@@ -9,6 +9,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,6 +33,13 @@ public class KrwTravelAccount {
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Invitation> invitationList;
+
+    @Builder
+    public KrwTravelAccount(Long accountId, String accountName, Long targetAmount) {
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.targetAmount = targetAmount;
+    }
 
     public void changeAccountName(String newAccountName) {
         if (newAccountName == null) {

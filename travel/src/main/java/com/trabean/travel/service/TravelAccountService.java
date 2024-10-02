@@ -3,8 +3,6 @@ package com.trabean.travel.service;
 import static com.trabean.util.CurrencyUtils.changeCurrency;
 
 import com.trabean.travel.callApi.client.DemandDepositClient;
-import com.trabean.travel.callApi.dto.request.AccountBalanceApiRequestDto;
-import com.trabean.travel.callApi.dto.response.AccountBalanceApiResponseDto;
 import com.trabean.travel.dto.response.AccountInfoResponseDto;
 import com.trabean.travel.dto.response.TravelAccountIdResponseDto;
 import com.trabean.travel.dto.response.TravelAccountResponseDto;
@@ -12,7 +10,6 @@ import com.trabean.travel.dto.response.TravelListAccountResponseDto;
 import com.trabean.travel.entity.ForeignTravelAccount;
 import com.trabean.travel.entity.KrwTravelAccount;
 import com.trabean.travel.repository.KrwTravelAccountRepository;
-import com.trabean.util.RequestHeader;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -47,41 +44,28 @@ public class TravelAccountService {
 
         List<TravelAccountResponseDto> list = new ArrayList<>();
 
-        // 계좌번호 조회
         String accountKRWNo = commonAccountService.getAccountNo(parentId);
-
-        // krwTravelAccount 잔액조회
-        Double accountKRWBalance = 0.0;
-
-        AccountBalanceApiRequestDto getAccountBalanceRequestDto
-                = new AccountBalanceApiRequestDto(
-                RequestHeader.builder()
-                        .apiName("inquireDemandDepositAccountBalance")
-                        .userKey(userKey)
-                        .build(),
-                accountKRWNo);
-
-        AccountBalanceApiResponseDto accountBalanceApiResponseDto = demandDepositClient.getKrwAccountBalance(
-                getAccountBalanceRequestDto);
-
-        accountKRWBalance = (double) accountBalanceApiResponseDto.getRec().getAccountBalance();
+        Double accountKRWBalance = commonAccountService.getKrwAccountBalance(parentId, accountKRWNo);
 
         list.add(new TravelAccountResponseDto(krwTravelAccount.getAccountId(), "한국", "KRW", accountKRWBalance));
 
         List<ForeignTravelAccount> foreignTravelAccounts = krwTravelAccount.getChildAccounts();
 
-        for (ForeignTravelAccount foreignTravelAccount : foreignTravelAccounts) {
-            Long accountId = foreignTravelAccount.getAccountId();
-            String exchangeCurrency = foreignTravelAccount.getExchangeCurrency();
-            String country = changeCurrency(exchangeCurrency);
+        if (!foreignTravelAccounts.isEmpty()) {
+            for (ForeignTravelAccount foreignTravelAccount : foreignTravelAccounts) {
+                Long accountId = foreignTravelAccount.getAccountId();
+                String exchangeCurrency = foreignTravelAccount.getExchangeCurrency();
+                String country = changeCurrency(exchangeCurrency);
 
-            // 외화통장 계좌번호 조회
-            String foreignAccountNo = commonAccountService.getAccountNo(accountId);
+                // 외화통장 계좌번호 조회
+                String foreignAccountNo = commonAccountService.getAccountNo(accountId);
 
-            // 외화통장 잔액조회
-            Double foreignAccountBalance = commonAccountService.getForeignAccountBalance(foreignAccountNo);
+                // 외화통장 잔액조회
+                Double foreignAccountBalance = commonAccountService.getForeignAccountBalance(accountId,
+                        foreignAccountNo);
 
-            list.add(new TravelAccountResponseDto(accountId, country, exchangeCurrency, foreignAccountBalance));
+                list.add(new TravelAccountResponseDto(accountId, country, exchangeCurrency, foreignAccountBalance));
+            }
         }
 
         return new TravelListAccountResponseDto(krwTravelAccount.getAccountName(), list);

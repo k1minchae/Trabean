@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ErrorResponseDTO {
+public class SsafyErrorResponseDTO {
 
     private String responseCode;
     private String responseMessage;

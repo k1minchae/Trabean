@@ -1,19 +1,24 @@
 package com.trabean.travel.controller;
 
+import com.trabean.travel.dto.request.AccountChangeNameRequestDto;
+import com.trabean.travel.dto.request.AccountChangeTargetAmountRequestDto;
 import com.trabean.travel.dto.request.ExchangeEstimateRequestDto;
 import com.trabean.travel.dto.request.ExchangeRequestDto;
 import com.trabean.travel.dto.request.ForeignAccountHistoryRequestDto;
 import com.trabean.travel.dto.request.InvitaionRequestDto;
+import com.trabean.travel.dto.request.MemberJoinRequestDto;
+import com.trabean.travel.dto.request.MemberRoleChangeRequestDto;
 import com.trabean.travel.dto.request.SaveForeignAccountRequestDto;
+import com.trabean.travel.dto.request.SaveKrwAccountRequestDto;
 import com.trabean.travel.dto.request.SplitRequestDto;
 import com.trabean.travel.dto.response.AccountInfoResponseDto;
 import com.trabean.travel.dto.response.ExchangeEstimateResponseDto;
 import com.trabean.travel.dto.response.ExchangeRateResponseDto;
 import com.trabean.travel.dto.response.ExchangeResponseDto;
 import com.trabean.travel.dto.response.ForeignAccountHistoryResponseDto;
+import com.trabean.travel.dto.response.TargetAmountListResponseDto;
 import com.trabean.travel.dto.response.TravelAccountIdResponseDto;
 import com.trabean.travel.dto.response.TravelListAccountResponseDto;
-import com.trabean.travel.entity.KrwTravelAccount;
 import com.trabean.travel.service.ExchangeService;
 import com.trabean.travel.service.ForeignTravelAccountService;
 import com.trabean.travel.service.KrwTravelAccountService;
@@ -50,14 +55,20 @@ public class TravelAccountController {
         return ResponseEntity.ok(travelAccountService.findAllTravelAccount(parentAccountId));
     }
 
-    @PutMapping("accountName/{accountId}")
-    public ResponseEntity<Void> updateTravelAccountName(@PathVariable Long accountId, @RequestBody String accountName) {
+    @PutMapping("/change/accountName")
+    public ResponseEntity<Void> updateTravelAccountName(
+            @RequestBody AccountChangeNameRequestDto accountChangeNameRequestDto) {
+        Long accountId = accountChangeNameRequestDto.getAccountId();
+        String accountName = accountChangeNameRequestDto.getAccountName();
         travelAccountService.updateTravelAccountName(accountId, accountName);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("targetAmount/{accountId}")
-    public ResponseEntity<Void> updateTargetAmount(@PathVariable Long accountId, @RequestBody Long targetAmount) {
+    @PutMapping("/change/targetAmount")
+    public ResponseEntity<Void> updateTargetAmount(
+            @RequestBody AccountChangeTargetAmountRequestDto accountChangeTargetAmountRequestDto) {
+        Long accountId = accountChangeTargetAmountRequestDto.getAccountId();
+        Long targetAmount = accountChangeTargetAmountRequestDto.getTargetAmount();
         targetAmountService.updateTargetAmount(accountId, targetAmount);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -76,8 +87,8 @@ public class TravelAccountController {
     }
 
     @PostMapping("/krw-account/save")
-    public ResponseEntity<Void> saveKrwAccountSave(@RequestBody KrwTravelAccount krwTravelAccount) {
-        krwTravelAccountService.save(krwTravelAccount);
+    public ResponseEntity<Void> saveKrwAccountSave(@RequestBody SaveKrwAccountRequestDto saveKrwAccountRequestDto) {
+        krwTravelAccountService.save(saveKrwAccountRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -96,8 +107,10 @@ public class TravelAccountController {
 
     @GetMapping("/foreign/{accountId}")
     public ResponseEntity<ForeignAccountHistoryResponseDto> getForeignAccountHistory(
-            @PathVariable Long accountId, @RequestParam String startDate, @RequestParam String endDate,
-            @RequestParam String transactionType) {
+            @PathVariable Long accountId,
+            @RequestParam(defaultValue = "20240101") String startDate,
+            @RequestParam(defaultValue = "20241231") String endDate,
+            @RequestParam(defaultValue = "A") String transactionType) {
         ForeignAccountHistoryRequestDto foreignAccountHistoryRequestDto
                 = new ForeignAccountHistoryRequestDto(accountId, startDate, endDate, transactionType);
 
@@ -136,5 +149,32 @@ public class TravelAccountController {
     public ResponseEntity<Void> splitAmount(@RequestBody SplitRequestDto splitRequestDto) {
         krwTravelAccountService.splitAmount(splitRequestDto);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/join")
+    public ResponseEntity<Void> joinTravelAccount(@RequestBody MemberJoinRequestDto memberJoinRequestDto) {
+        String message = memberService.join(memberJoinRequestDto);
+
+        if (message.equals("여행통장 가입 성공")) {
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("/role")
+    public ResponseEntity<Void> changeRole(@RequestBody MemberRoleChangeRequestDto memberRoleChangeRequestDto) {
+        String message = memberService.changeRole(memberRoleChangeRequestDto);
+
+        if (message.equals("여행통장 결제 권한 변경 성공")) {
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/targetAmount/{accountId}")
+    public ResponseEntity<TargetAmountListResponseDto> getTargetAmountList(@PathVariable Long accountId) {
+        return ResponseEntity.ok(targetAmountService.getTargetAmountList(accountId));
     }
 }

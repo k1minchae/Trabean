@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ExchangeRequestDto {
 
+    private Long krwAccountId;
     private String withdrawalAccountNo;
     private String depositAccountNo;
     private String exchangeCurrency;

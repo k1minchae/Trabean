@@ -38,6 +38,7 @@ public class ExchangeService {
     private final ForeignCurrencyClient foreignCurrencyClient;
     private final ExchangeRateClient exchangeRateClient;
     private final KoreaeximClient koreaeximClient;
+    private final CommonAccountService commonAccountService;
 
     @Value("${KOREAEXIM_AUTHKEY}")
     private String authKey;
@@ -74,10 +75,12 @@ public class ExchangeService {
     }
 
     public ExchangeResponseDto exchange(ExchangeRequestDto requestDto) {
+        String adminUserKey = commonAccountService.getUserKey(requestDto.getKrwAccountId());
+
         ExchangeApiRequestDto exchangeApiRequestDto = new ExchangeApiRequestDto(
                 RequestHeader.builder()
                         .apiName("exchange")
-                        .userKey(userKey)
+                        .userKey(adminUserKey)
                         .build(),
                 requestDto.getWithdrawalAccountNo(),
                 requestDto.getExchangeCurrency(),
@@ -96,7 +99,7 @@ public class ExchangeService {
         DepositForeignAccountApiRequestDto depositForeignAccountApiRequestDto = new DepositForeignAccountApiRequestDto(
                 RequestHeader.builder()
                         .apiName("updateForeignCurrencyDemandDepositAccountDeposit")
-                        .userKey(userKey)
+                        .userKey(adminUserKey)
                         .build(),
                 depositAccountNo,
                 amount,

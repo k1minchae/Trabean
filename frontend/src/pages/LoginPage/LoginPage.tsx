@@ -1,8 +1,30 @@
+import axios from "axios";
+import { useState } from "react";
+
 import bean from "../../assets/bean.png";
 import userIcon from "../../assets/icon/userIcon.png";
 import keyIcon from "../../assets/icon/keyIcon.png";
 
 function LoginPage() {
+  const [email, setEmail] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+
+  const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const onClickLogin = async () => {
+    const response = await axios.post(
+      `${process.env.REACT_APP_END_POINT}/api/user/login`,
+      { email, password },
+    );
+    console.log(response);
+  };
+
   return (
     <div className="bg-primary-light w-full h-full flex flex-col justify-center items-center">
       <img src={bean} alt="아이콘" className="w-[40px] mb-7" />
@@ -16,19 +38,21 @@ function LoginPage() {
             id="email"
             placeholder="아이디(이메일)"
             className="h-9 text-xs focus:outline-none"
+            onChange={inputEmail}
           />
         </div>
         <div className="flex items-center border-[1.5px] border-primary-light border-solid rounded-md px-2">
           <img src={keyIcon} alt="비밀번호 아이콘" className="w-6 mr-2" />
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             placeholder="비밀번호"
             className="h-9 text-xs focus:outline-none"
+            onChange={inputPassword}
           />
         </div>
-        <button type="button" className="btn-md w-[75%]">
+        <button type="button" className="btn-md w-[75%]" onClick={onClickLogin}>
           로그인
         </button>
         <button type="button" className="btn-gray-md w-[75%]">

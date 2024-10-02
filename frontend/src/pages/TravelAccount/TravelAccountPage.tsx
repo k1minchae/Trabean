@@ -39,7 +39,7 @@ const TravelAccountPage: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("http://j11a604.p.ssafy.io/api/travel/59")
+      .get("https://j11a604.p.ssafy.io/api/travel/59")
       .then((response) => {
         setAccountData(response.data);
       })
@@ -54,7 +54,7 @@ const TravelAccountPage: React.FC = () => {
   useEffect(() => {
     axios
       .get(
-        "http://j11a604.p.ssafy.io/api/accounts/travel/domestic/59/members",
+        "https://j11a604.p.ssafy.io/api/accounts/travel/domestic/59/members",
         {
           headers: {
             userId: 14,
@@ -80,7 +80,7 @@ const TravelAccountPage: React.FC = () => {
 
     axios
       .post(
-        "http://j11a604.p.ssafy.io/api/accounts/internal/get-accountNo",
+        "https://j11a604.p.ssafy.io/api/accounts/internal/get-accountNo",
         requestBody,
       )
       .then((response) => {

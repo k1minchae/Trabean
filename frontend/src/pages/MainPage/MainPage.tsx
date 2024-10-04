@@ -1,44 +1,46 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Account from "./MainPage.Account";
 
 import logo from "../../assets/logo.png";
 import plusIcon from "../../assets/icon/plusIcon.png";
-// import client from "../../client";
+import client from "../../client";
 
-// type Account = {
-//   accountId: number;
-//   accountNo: string;
-//   accountName: string;
-//   bankName: string;
-//   accountBalance: number;
-// };
+type Account = {
+  accountId: number;
+  accountNo: string;
+  accountName: string;
+  bankName: string;
+  accountBalance: number;
+};
 
 function MainPage() {
-  // const token = "";
+  const token = "";
 
-  // const [mainAccount, setMainAccount] = useState<Account | null>(null);
-  // const [accountList, setAccountList] = useState<Array<Account> | null>(null);
+  const [mainAccount, setMainAccount] = useState<Account | null>(null);
+  const [accountList, setAccountList] = useState<Array<Account> | null>(null);
 
-  // useEffect(() => {
-  //   const getAccountInfo = async () => {
-  //     const response = await client(token).get("/api/accounts");
-  //     setMainAccount(response.data.mainAccount);
-  //     setAccountList(response.data.accountList);
-  //   };
+  useEffect(() => {
+    const getAccountInfo = async () => {
+      const response = await client(token).get("/api/accounts");
+      setMainAccount(response.data.mainAccount);
+      setAccountList(response.data.accountList);
 
-  //   getAccountInfo();
-  // });
+      console.log(accountList);
+    };
+
+    getAccountInfo();
+  });
 
   return (
     <div className="px-6 py-20">
       <img src={logo} alt="로고" className="h-5 mb-3" />
       <div className="bg-primary-light h-56 rounded-2xl py-5 px-6 flex flex-col justify-between">
         <div>
-          <h4 className="text-lg font-bold">Trabean 통장</h4>
-          <span className="text-sm">1002-555-139750</span>
+          <h4 className="text-lg font-bold">{mainAccount?.accountName}</h4>
+          <span className="text-sm">{mainAccount?.accountNo}</span>
         </div>
-        <div className="text-3xl font-bold">1,632,500 원</div>
+        <div className="text-3xl font-bold">{mainAccount?.accountBalance}</div>
         <button type="button" className="btn-lg">
           이체하기
         </button>

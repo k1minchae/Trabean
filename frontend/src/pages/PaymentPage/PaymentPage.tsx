@@ -38,7 +38,7 @@ const PaymentPage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center h-dvh justify-center">
-      <TopBar />
+      <TopBar isWhite isLogo={false} page="QR 결제" />
       <video
         ref={videoRef}
         style={{

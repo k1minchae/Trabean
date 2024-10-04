@@ -4,10 +4,13 @@ import { useState } from "react";
 import bean from "../../assets/bean.png";
 import userIcon from "../../assets/icon/userIcon.png";
 import keyIcon from "../../assets/icon/keyIcon.png";
+import useAuthStore from "../../store/useAuthStore";
 
 function LoginPage() {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
+
+  const setAccessToken = useAuthStore((state) => state.setAccessToken);
 
   const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -23,7 +26,10 @@ function LoginPage() {
       { email, password },
       { withCredentials: true },
     );
-    console.log(response);
+
+    const token = response.data.split(" ")[1];
+    localStorage.setItem("accessToken", token);
+    setAccessToken(token);
   };
 
   return (

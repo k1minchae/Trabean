@@ -1,7 +1,9 @@
 import axios, { AxiosInstance } from "axios";
+import useAuthStore from "./store/useAuthStore";
 
-const client = (token: string): AxiosInstance => {
+const client = (): AxiosInstance => {
   const ENDPOINT = process.env.REACT_APP_END_POINT;
+  const token = useAuthStore.getState().accessToken;
 
   if (!ENDPOINT) {
     throw new Error("Endpoint is not exist");

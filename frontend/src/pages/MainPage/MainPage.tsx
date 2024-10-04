@@ -15,14 +15,12 @@ type Account = {
 };
 
 function MainPage() {
-  const token = "";
-
   const [mainAccount, setMainAccount] = useState<Account | null>(null);
   const [accountList, setAccountList] = useState<Array<Account> | null>(null);
 
   useEffect(() => {
     const getAccountInfo = async () => {
-      const response = await client(token).get("/api/accounts");
+      const response = await client().get("/api/accounts");
       setMainAccount(response.data.mainAccount);
       setAccountList(response.data.accountList);
 

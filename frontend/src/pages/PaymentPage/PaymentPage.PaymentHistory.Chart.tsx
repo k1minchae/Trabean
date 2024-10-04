@@ -61,7 +61,7 @@ const Chart: React.FC<ChartProps> = ({
       startdate: startDate ? formatDate(startDate) : null,
       enddate: endDate ? formatDate(endDate) : null,
     };
-    const response = await client(token || "").get(`/api/payments/1/chart`, {
+    const response = await client().get(`/api/payments/1/chart`, {
       params,
     });
     console.log(response.data);

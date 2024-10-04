@@ -73,7 +73,7 @@ const List: React.FC<ListProps> = ({
           enddate: endDate ? formatDate(endDate) : null,
           page: reset ? 1 : page,
         };
-        const response = await client(token || "").get(`/api/payments/1`, {
+        const response = await client().get(`/api/payments/1`, {
           params,
         });
 

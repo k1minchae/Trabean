@@ -78,7 +78,7 @@ const CategoryList: React.FC<ListProps> = ({
           enddate: endDate ? formatDate(endDate) : null,
           page: reset ? 1 : page,
         };
-        const response = await client(token || "").get(
+        const response = await client().get(
           `/api/payments/${travelAccountId}/${categoryName}`,
           {
             params,

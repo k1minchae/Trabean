@@ -15,7 +15,7 @@ const TopBar: React.FC<topBar> = ({ isLogo, page, isWhite }) => {
 
   // 배경색 클래스 설정
   const topBarClass = classNames(
-    "w-[360px] h-[52px] flex items-center fixed top-0 z-100 text-gray-700",
+    "w-[360px] h-[52px] flex items-center fixed top-0 z-70 text-gray-700",
     {
       "bg-[#F4F4F5]": !isWhite,
       "bg-white": isWhite,

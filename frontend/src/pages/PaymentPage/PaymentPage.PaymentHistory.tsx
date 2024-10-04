@@ -55,7 +55,7 @@ const PaymentHistory: React.FC = () => {
 
   return (
     <>
-      <TopBar />
+      <TopBar isWhite={false} isLogo={false} page="가계부" />
       <div className="w-full bg-[#F4F4F5] h-vdh py-[4.375rem] flex flex-col items-center pt-[90px]">
         <div className="w-[300px]">
           <h1 className="text-base text-gray-900 font-semibold flex justify-between">

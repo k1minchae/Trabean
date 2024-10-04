@@ -30,7 +30,8 @@ function MainPage() {
     };
 
     getAccountInfo();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="px-6 py-20">

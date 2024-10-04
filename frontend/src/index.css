@@ -131,3 +131,20 @@ body {
   width: 360px;
   height: 100dvh;
 }
+
+/* 차트 outline 없애기 */
+.pie-chart-container:focus {
+  outline: none;
+}
+
+.recharts-sector:focus {
+  outline: none;
+}
+
+.recharts-pie:focus {
+  outline: none;
+}
+
+.recharts-legend-wrapper {
+  position: static;
+}

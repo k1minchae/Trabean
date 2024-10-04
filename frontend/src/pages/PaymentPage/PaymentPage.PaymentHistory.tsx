@@ -3,6 +3,7 @@ import Search from "./PaymentPage.PaymentHistory.Search";
 import Chart from "./PaymentPage.PaymentHistory.Chart";
 import List from "./PaymentPage.PaymentHistory.List";
 import CategoryList from "./PaymentPage.PaymentHistory.CategoryList";
+import NavBar from "../../components/NavBar";
 
 const PaymentHistory: React.FC = () => {
   const [token] = useState<string | null>(null);
@@ -53,66 +54,69 @@ const PaymentHistory: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#F4F4F5] h-vdh py-[4.375rem] flex flex-col items-center">
-      <div className="w-[300px]">
-        <h1 className="text-base text-gray-900 font-semibold flex justify-between">
-          지출 내역
-          <button
-            type="button"
-            className="font-semibold focus:cursor-pointer"
-            onClick={toggleDate}
-          >
-            {showDate ? "선택 취소" : "기간 선택"}{" "}
-            <span className="text-xs mx-1">▼</span>
-          </button>
-        </h1>
-        {showDate && (
-          <Search
-            handleStartDate={handleStartDate}
-            handleEndDate={handleEndDate}
-            startDate={startDate}
-            endDate={endDate}
-            handleFetchChart={handleFetchChart}
-          />
-        )}
-        <div className="w-full bg-white rounded-[0.625rem] px-[1rem] my-[1.25rem]">
-          <p className="font-semibold text-gray-700 text-sm h-[2.5rem] flex items-center">
-            <span className="w-[60%]">총 지출액</span>{" "}
-            <span className="w-[60%]">{totalAmount} ₩</span>
-          </p>
-        </div>
-        <div className="bg-white rounded-[15px] py-[0.875rem] px-[1rem] flex flex-col items-center h-full">
-          <Chart
-            handleTotalAmount={handleTotalAmount}
-            token={token}
-            startDate={startDate}
-            endDate={endDate}
-            formatDate={formatDate}
-            signalFetchChart={signalFetchChart}
-            handleCategory={handleCategory}
-          />
-          {category === "ALL" && (
-            <List
+    <>
+      <NavBar />
+      <div className="w-full bg-[#F4F4F5] h-vdh py-[4.375rem] flex flex-col items-center pt-[90px]">
+        <div className="w-[300px]">
+          <h1 className="text-base text-gray-900 font-semibold flex justify-between">
+            지출 내역
+            <button
+              type="button"
+              className="font-semibold focus:cursor-pointer"
+              onClick={toggleDate}
+            >
+              {showDate ? "선택 취소" : "기간 선택"}{" "}
+              <span className="text-xs mx-1">▼</span>
+            </button>
+          </h1>
+          {showDate && (
+            <Search
+              handleStartDate={handleStartDate}
+              handleEndDate={handleEndDate}
               startDate={startDate}
               endDate={endDate}
-              token={token}
-              formatDate={formatDate}
+              handleFetchChart={handleFetchChart}
             />
           )}
-          {category !== "ALL" && (
-            <CategoryList
-              startDate={startDate}
-              endDate={endDate}
-              token={token}
-              formatDate={formatDate}
-              categoryName={category}
-              travelAccountId={1}
+          <div className="w-full bg-white rounded-[0.625rem] px-[1rem] my-[1.25rem]">
+            <p className="font-semibold text-gray-700 text-sm h-[2.5rem] flex items-center">
+              <span className="w-[60%]">총 지출액</span>{" "}
+              <span className="w-[60%]">{totalAmount} ₩</span>
+            </p>
+          </div>
+          <div className="bg-white rounded-[15px] py-[0.875rem] px-[1rem] flex flex-col items-center h-full">
+            <Chart
               handleTotalAmount={handleTotalAmount}
+              token={token}
+              startDate={startDate}
+              endDate={endDate}
+              formatDate={formatDate}
+              signalFetchChart={signalFetchChart}
+              handleCategory={handleCategory}
             />
-          )}
+            {category === "ALL" && (
+              <List
+                startDate={startDate}
+                endDate={endDate}
+                token={token}
+                formatDate={formatDate}
+              />
+            )}
+            {category !== "ALL" && (
+              <CategoryList
+                startDate={startDate}
+                endDate={endDate}
+                token={token}
+                formatDate={formatDate}
+                categoryName={category}
+                travelAccountId={1}
+                handleTotalAmount={handleTotalAmount}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -21,6 +21,7 @@ function LoginPage() {
     const response = await axios.post(
       `${process.env.REACT_APP_END_POINT}/api/user/login`,
       { email, password },
+      { withCredentials: true },
     );
     console.log(response);
   };

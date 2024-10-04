@@ -5,6 +5,8 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import TravelAccountPage from "./pages/TravelAccount/TravelAccountPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import MainPage from "./pages/MainPage/MainPage";
+import JoinPage from "./pages/JoinPage/JoinPage";
+import MailInfo from "./pages/JoinPage/JoinPage.MailInfo";
 import TransferList from "./pages/TransferPage/TransferPage.TransferList";
 import TransferLists from "./pages/TransferPage/TransferPage.TransferLists";
 
@@ -20,6 +22,8 @@ function App() {
         />
         <Route path="/payment/qr" element={<PaymentPage />} />
         <Route path="/payment/list" element={<PaymentHistory />} />
+        <Route path="/join" element={<JoinPage />} />
+        <Route path="/mailInfo" element={<MailInfo />} />
         <Route path="/transfer/list" element={<TransferLists />} />
         <Route path="/transfer/list/:account" element={<TransferList />} />
       </Routes>

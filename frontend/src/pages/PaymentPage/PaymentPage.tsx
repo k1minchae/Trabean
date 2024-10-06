@@ -9,8 +9,18 @@ const PaymentPage: React.FC = () => {
     try {
       const parsedData = JSON.parse(result.data);
       console.log(parsedData);
+
+      // 스캔된 URL로 리다이렉트
+      if (parsedData && parsedData.url) {
+        window.location.href = parsedData.url;
+      }
     } catch (error) {
       console.error("Error parsing QR code data:", error);
+
+      // URL 형태의 QR 코드일 경우 바로 리다이렉트
+      if (result.data.startsWith("http")) {
+        window.location.href = result.data;
+      }
     }
   };
 

@@ -1,9 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import TopBar from "../../components/TopBar";
 import SuccessIcon from "../../assets/successIcon.png";
 
 const SuccessPage: React.FC = () => {
-  console.log("성공 페이지");
+  const navigate = useNavigate();
+  const goHome = () => {
+    navigate("/");
+  };
   return (
     <>
       <TopBar isWhite isLogo={false} page="QR 결제" />
@@ -17,7 +22,11 @@ const SuccessPage: React.FC = () => {
           축하합니다 !
         </p>
         <p className="text-lg text-gray-700">결제에 성공하셨습니다.</p>
-        <button type="button" className="btn-lg mt-[20px] w-[238px]">
+        <button
+          type="button"
+          className="btn-lg mt-[20px] w-[238px]"
+          onClick={goHome}
+        >
           확인
         </button>
       </div>

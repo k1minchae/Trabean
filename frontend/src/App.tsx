@@ -32,7 +32,7 @@ function App() {
         />
         <Route path="/payment/qr" element={<PaymentPage />} />
         <Route
-          path="/payment/qr/:payId/:merchantName/:currency/:amount/:userId"
+          path="/payment/qr/:merchantId/:merchantName/:currency/:amount"
           element={<PaymentPassword />}
         />
         <Route

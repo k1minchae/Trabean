@@ -5,6 +5,7 @@ import bean from "../../assets/bean.png";
 import userIcon from "../../assets/icon/userIcon.png";
 import keyIcon from "../../assets/icon/keyIcon.png";
 import useAuthStore from "../../store/useAuthStore";
+// import client from "../../client";
 
 function LoginPage() {
   const [email, setEmail] = useState<string | null>(null);
@@ -19,6 +20,15 @@ function LoginPage() {
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  // const getMainPaymentAccount = async () => {
+  //   try {
+  //     const response = await client().get(
+  //       "/api/accounts/main",
+  //     );
+  //     return response.data;
+  //   }
+  // }
 
   const onClickLogin = async () => {
     const response = await axios.post(

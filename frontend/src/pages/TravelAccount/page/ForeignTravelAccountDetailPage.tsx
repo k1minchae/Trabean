@@ -231,7 +231,7 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
 
       {/* 필터 모달 */}
       {isChangeFilterModalOpen ? (
-        <div className="absolute inset-0 flex items-end bg-gray-900 bg-opacity-50">
+        <div className="absolute inset-0 flex items-end py-12 bg-gray-900 bg-opacity-50">
           <div className="w-full">
             <ForeignTravelAccountFilterModal
               accountId={accountId}

@@ -186,7 +186,7 @@ const MemberManagementPage: React.FC = () => {
         <button
           type="button"
           onClick={openChangeInviteModal}
-          className="btn-lg absolute bottom-10 left-0 right-0 w-[90%] mx-auto block"
+          className="btn-lg absolute bottom-24 left-0 right-0 w-[90%] mx-auto block"
         >
           초대하기
         </button>
@@ -194,7 +194,7 @@ const MemberManagementPage: React.FC = () => {
 
       {/* 유저 권한 변경 모달 */}
       {isChangeUserRoleModalOpen && memberInfo ? (
-        <div className="absolute inset-0 flex items-end bg-gray-900 bg-opacity-50">
+        <div className="absolute inset-0 flex items-end py-8 bg-gray-900 bg-opacity-50">
           <div className="w-full">
             <ChangeUserRoleModal
               accountId={accountId}

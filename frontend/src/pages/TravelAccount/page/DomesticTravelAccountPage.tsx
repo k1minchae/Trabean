@@ -338,7 +338,7 @@ const DomesticTravelAccountPage: React.FC = () => {
 
       {/* 목표 관리 모달 */}
       {isChangeTargetAmountModalOpen ? (
-        <div className="absolute inset-0 flex items-end bg-gray-900 bg-opacity-50">
+        <div className="absolute inset-0 flex items-end py-8 bg-gray-900 bg-opacity-50">
           <div className="w-full">
             <ChangeTargetAmountModal
               accountId={accountId}

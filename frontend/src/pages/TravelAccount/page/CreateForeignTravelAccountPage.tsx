@@ -88,7 +88,7 @@ const CreateForeignTravelAccountPage: React.FC = () => {
       </div>
 
       {/* 다음 버튼 */}
-      <div className="absolute bottom-0 w-full p-4 bg-white">
+      <div className="absolute bottom-0 w-full px-4 py-24 bg-white">
         <button
           type="button"
           onClick={() =>

@@ -5,6 +5,7 @@ import Account from "./MainPage.Account";
 import logo from "../../assets/logo.png";
 import plusIcon from "../../assets/icon/plusIcon.png";
 import client from "../../client";
+import { formatNumberWithCommas } from "../../utils/formatNumber";
 
 type AccountType = {
   accountId: number;
@@ -34,16 +35,20 @@ function MainPage() {
   return (
     <div className="px-6 py-20">
       <img src={logo} alt="로고" className="h-5 mb-3" />
-      <div className="bg-primary-light h-56 rounded-2xl py-5 px-6 flex flex-col justify-between">
-        <div>
-          <h4 className="text-lg font-bold">{mainAccount?.accountName}</h4>
-          <span className="text-sm">{mainAccount?.accountNo}</span>
+      {mainAccount && (
+        <div className="bg-primary-light h-56 rounded-2xl py-5 px-6 flex flex-col justify-between">
+          <div>
+            <h4 className="text-lg font-bold">{mainAccount.accountName}</h4>
+            <span className="text-sm">{mainAccount.accountNo}</span>
+          </div>
+          <div className="text-3xl font-bold">
+            {formatNumberWithCommas(mainAccount.accountBalance)}
+          </div>
+          <button type="button" className="btn-lg">
+            이체하기
+          </button>
         </div>
-        <div className="text-3xl font-bold">{mainAccount?.accountBalance}</div>
-        <button type="button" className="btn-lg">
-          이체하기
-        </button>
-      </div>
+      )}
       <div className="border-[1.5px] border-primary border-solid rounded-xl px-1 flex flex-col justify-between mt-5">
         {accountList?.map((account, index) => (
           <div key={account.accountId}>

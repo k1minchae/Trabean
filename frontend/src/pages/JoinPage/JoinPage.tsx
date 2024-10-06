@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import prevIcon from "../../assets/icon/prevIcon.png";
 import client from "../../client";
+import TopBar from "../../components/TopBar";
 
 function JoinPage() {
   const navigate = useNavigate();
@@ -94,12 +94,9 @@ function JoinPage() {
   };
 
   return (
-    <div className="h-[100vh] relative mt-5">
-      <div className="flex">
-        <img src={prevIcon} alt="이전버튼" className="w-[17px] h-[28px]" />
-        <h2 className="text-lg m-auto">회원가입</h2>
-      </div>
-      <div className="mx-2 mt-16 ">
+    <div className="h-[100vh] relative pt-5">
+      <TopBar isLogo={false} page="회원가입" isWhite />
+      <div className="mx-2 pt-24 ">
         <div>
           <input
             type="text"

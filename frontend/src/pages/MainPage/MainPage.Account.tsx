@@ -1,5 +1,6 @@
 import soyIcon from "../../assets/icon/soyIcon.png";
 import arrowRIcon from "../../assets/icon/arrowRIcon.png";
+import { formatNumberWithCommas } from "../../utils/formatNumber";
 
 type Account = {
   accountId: number;
@@ -22,7 +23,7 @@ function Account({ account }: AccountProps) {
         <span className="text-gray-700 text-[8px]">{account.accountNo}</span>
       </div>
       <div className="font-bold text-sm ml-3 w-[80px]">
-        {account.accountBalance}원
+        {formatNumberWithCommas(account.accountBalance)}원
       </div>
       <img
         src={arrowRIcon}

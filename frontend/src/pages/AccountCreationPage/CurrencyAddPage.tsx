@@ -1,3 +1,5 @@
+// 삭제 예정
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../../components/TopBar";
@@ -13,6 +15,7 @@ import cadFlag from "../../assets/flagIcon/cad.png";
 import chfFlag from "../../assets/flagIcon/chf.png";
 import cnyFlag from "../../assets/flagIcon/cny.png";
 import jpyFlag from "../../assets/flagIcon/jpy.png";
+import client from "../../client";
 
 interface SubMessage {
   key: string | number;
@@ -56,26 +59,18 @@ const CurrencyAddPage: React.FC = () => {
 
   // 비밀번호 검증
   const isVerificationCodeValid = async () => {
-    // API 요청에 사용할 header 및 body 데이터를 설정합니다.
-    const headers = {};
-
     const body = JSON.stringify({
-      userId: 123,
       accountId: 1234,
       password,
     });
 
     try {
-      const response = await fetch(
-        "https://j11a604.p.ssafy.io/api/accounts/internal/verify-password", // API 엔드포인트 URL
-        {
-          method: "POST",
-          headers,
-          body,
-        },
+      const response = await client().post(
+        "/api/accounts/internal/verify-password",
+        body,
       );
 
-      return response.ok; // 응답이 성공적인 경우 true 반환
+      return response.status === 200; // 응답이 성공적인 경우 true 반환
     } catch (error) {
       console.error("인증번호 검증 요청 실패:", error);
       // return false; // 요청 실패 시 false 반환

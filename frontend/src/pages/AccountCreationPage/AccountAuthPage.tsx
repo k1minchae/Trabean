@@ -80,12 +80,6 @@ const AccountVerificationPage: React.FC = () => {
       const response = await client().post(
         "/api/accounts/verification/onewon", // API 엔드포인트 URL
         body, // 요청 본문 (Axios가 자동으로 JSON으로 변환)
-        {
-          headers: {
-            userId: 25, // 유저 식별자
-            userKey: "808a2968-9e30-43a3-b6dd-beff84d006e2", // 유저 Key
-          },
-        },
       );
 
       if (response.status === 200) {
@@ -127,12 +121,6 @@ const AccountVerificationPage: React.FC = () => {
         "/api/accounts/verification/account", // API 엔드포인트 URL
         {
           accountNo: accountNumber, // 요청 본문
-        },
-        {
-          headers: {
-            userId: 25, // 유저 식별자
-            userKey: "808a2968-9e30-43a3-b6dd-beff84d006e2", // 유저 Key
-          },
         },
       );
 

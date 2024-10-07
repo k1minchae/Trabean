@@ -70,12 +70,6 @@ const PasswordInputPage: React.FC = () => {
   const creationAccount = async () => {
     console.log("target : ", targetAmount);
     try {
-      // 공통 헤더 설정
-      const headers = {
-        userId: "19",
-        userKey: "073548cb-7e5f-4594-b927-1e412758ca3f",
-      };
-
       // 요청 URL 및 Body 설정
       let url = "/api/accounts/personal";
       const requestBody: {
@@ -91,7 +85,7 @@ const PasswordInputPage: React.FC = () => {
       }
 
       // 계좌 개설 요청 전송
-      await client().post(url, requestBody, { headers });
+      await client().post(url, requestBody);
 
       // 성공 시 다음 단계로 이동
       setStep(5);

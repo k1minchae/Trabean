@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import Modal from "./Modal";
 import SuccessPage from "./SuccessPage";
 import NextStepButton from "./NextStepButton";
+import client from "../../client";
 
 interface SubMessage {
   key: string | number;
@@ -56,13 +57,6 @@ const PasswordInputPage: React.FC = () => {
       setStep(4); // 비밀번호 입력 완료 -> 확인 단계로 이동
     } else if (step === 4 && confirmPassword === password) {
       try {
-        // POST 요청을 보내기 위한 헤더 및 데이터 설정
-        const headers = {
-          "Content-Type": "application/json",
-          userId: "12345", // 실제 사용자 식별자 값으로 대체
-          userKey: "sampleUserKey", // 실제 사용자 키 값으로 대체
-        };
-
         // 요청할 body 데이터 구성
         const body = JSON.stringify({
           password,
@@ -71,20 +65,16 @@ const PasswordInputPage: React.FC = () => {
         });
 
         // API 요청 전송
-        const response = await fetch(
-          "https://j11a604.p.ssafy.io/api/accounts/verification/account",
-          {
-            method: "POST",
-            headers,
-            body,
-          },
+        const response = await client().post(
+          "/api/accounts/verification/account",
+          body,
         );
 
         // 응답 결과 처리
-        if (response.ok) {
+        if (response.status === 200) {
           setStep(5); // 성공 시 성공 페이지로 이동
         } else {
-          const errorData = await response.json();
+          const errorData = await response.data();
           setModalMessage(errorData.message || "통장 개설에 실패했습니다.");
           setSubMessage([
             {

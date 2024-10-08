@@ -3,6 +3,7 @@ import bean from "../../assets/bean.png";
 import client from "../../client";
 
 type Notification = {
+  notificationId: number;
   senderId: number;
   accountId: number;
   isRead: boolean;
@@ -23,7 +24,7 @@ function Item({ item }: NotificationProps) {
   const date = item.createTime.split("T")[0].split("-");
 
   const onClickNoti = () => {
-    client().patch(`/api/notifications/1`);
+    client().patch(`/api/notifications/${item.notificationId}`);
   };
 
   useEffect(() => {
@@ -58,6 +59,8 @@ function Item({ item }: NotificationProps) {
       setInfoText(
         `${sender}님이 ${accountName} 통장에서 ${item.amount}원을 지불했어요!`,
       );
+    } else if (item.notificationType === "AUTH") {
+      setInfoText(`${accountName} 통장 인증번호는 ${item.amount}입니다.`);
     }
   }, [accountName, sender, item.notificationType, item.amount]);
 
@@ -68,10 +71,10 @@ function Item({ item }: NotificationProps) {
       role="presentation"
     >
       <img src={bean} alt="아이콘" className="w-[25px] h-[25px] mr-2" />
-      <div>
-        <div className="flex items-cente justify-between">
+      <div className="w-full">
+        <div className="flex items-cente justify-between w-full">
           <div>
-            <span className="text-base text-primary mr-1">{accountName}</span>
+            <span className="text-base mr-1">{accountName}</span>
             <span className="text-base text-gray-700">통장</span>
           </div>
           <div className="text-xs ml-3">{`${date[1]}월 ${date[2]}일`}</div>

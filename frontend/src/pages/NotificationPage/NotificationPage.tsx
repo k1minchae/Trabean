@@ -4,6 +4,7 @@ import client from "../../client";
 import Item from "./NotificationPage.Item";
 
 type NotificationType = {
+  notificationId: number;
   senderId: number;
   accountId: number;
   isRead: boolean;
@@ -17,7 +18,7 @@ function Notification() {
 
   useEffect(() => {
     const getNotification = async () => {
-      const response = await client().get(`/api/notifications/1`);
+      const response = await client().get(`/api/notifications`);
       setNotiList(response.data);
     };
 

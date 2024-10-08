@@ -69,7 +69,7 @@ const CreateForeignTravelAccountPage: React.FC = () => {
                 setSelectedCountry(country);
               }}
               className={`flex justify-between items-center w-full p-4 ${
-                selectedCurrency === exchangeCurrency ? "bg-green-500" : ""
+                selectedCurrency === exchangeCurrency ? "bg-primary" : ""
               }`}
             >
               <div className="flex items-center">
@@ -96,9 +96,7 @@ const CreateForeignTravelAccountPage: React.FC = () => {
               `/accounts/travel/foreign/${parentAccountId}/charge?create=true&country=${selectedCountry}&exchangeCurrency=${selectedCurrency}`,
             )
           }
-          className={`btn-lg w-full ${
-            selectedCurrency ? "bg-green-500 text-white" : "bg-gray-300"
-          }`}
+          className={`w-full ${selectedCurrency ? "btn-lg" : "btn-gray-lg"}`}
           disabled={!selectedCurrency}
         >
           다음

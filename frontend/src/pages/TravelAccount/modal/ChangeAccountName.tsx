@@ -34,7 +34,7 @@ const ChangeAccountNameModal: React.FC<ChangeAccountNameModalProps> = ({
           accountId,
           accountName: newAccountName,
         });
-        alert("계좌 이름이 성공적으로 변경되었습니다!");
+        // alert("계좌 이름이 성공적으로 변경되었습니다!");
         onAccountNameChange(newAccountName);
         onClose();
       } catch (error) {

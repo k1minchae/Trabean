@@ -44,7 +44,7 @@ const InvitePage: React.FC = () => {
   }
 
   return (
-    <div className="h-full flex justify-center items-center bg-green-300">
+    <div className="h-full flex justify-center items-center bg-primary-light">
       <div className="text-center p-4">
         <div>{accountName}</div>
         <img src={beans} alt={beans} className="my-4" />

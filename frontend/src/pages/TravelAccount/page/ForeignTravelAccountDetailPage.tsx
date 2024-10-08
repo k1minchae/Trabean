@@ -146,11 +146,9 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
               <div
                 className={`py-1 font-bold ${getBalanceColor(transaction.transactionType)}`}
               >
-                {transaction.transactionBalance > 0
+                {transaction.transactionTime === "1"
                   ? `+${getCurrencySymbol(foreignTravelAccountDetailData.exchangeCurrency)}${transaction.transactionBalance.toLocaleString()}`
-                  : `-${getCurrencySymbol(foreignTravelAccountDetailData.exchangeCurrency)}${Math.abs(
-                      transaction.transactionBalance,
-                    ).toLocaleString()}`}
+                  : `-${getCurrencySymbol(foreignTravelAccountDetailData.exchangeCurrency)}${transaction.transactionBalance.toLocaleString()}`}
               </div>
               <div className="text-xs">
                 {getCurrencySymbol(

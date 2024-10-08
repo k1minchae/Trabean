@@ -127,11 +127,9 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
               <div
                 className={`py-1 font-bold ${getBalanceColor(transaction.transactionType)}`}
               >
-                {transaction.transactionBalance > 0
+                {transaction.transactionType === "1"
                   ? `+₩${transaction.transactionBalance.toLocaleString()}`
-                  : `-₩${Math.abs(
-                      transaction.transactionBalance,
-                    ).toLocaleString()}`}
+                  : `-₩${transaction.transactionBalance.toLocaleString()}`}
               </div>
               <div className="text-xs">
                 ₩{transaction.transactionAfterBalance.toLocaleString()}

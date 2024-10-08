@@ -146,7 +146,7 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
               <div
                 className={`py-1 font-bold ${getBalanceColor(transaction.transactionType)}`}
               >
-                {transaction.transactionTime === "1"
+                {transaction.transactionType === "1"
                   ? `+${getCurrencySymbol(foreignTravelAccountDetailData.exchangeCurrency)}${transaction.transactionBalance.toLocaleString()}`
                   : `-${getCurrencySymbol(foreignTravelAccountDetailData.exchangeCurrency)}${transaction.transactionBalance.toLocaleString()}`}
               </div>
@@ -172,7 +172,12 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
     <div className="h-full relative">
       {/* 네비게이션 바 */}
       <div className="pt-24">
-        <TopBar page="이용내역" isWhite isLogo={false} />
+        <TopBar
+          page="이용내역"
+          isWhite
+          isLogo={false}
+          path={`/accounts/travel/domestic/${parentAccountId}`}
+        />
       </div>
 
       {/* 외화 여행통장 정보 */}

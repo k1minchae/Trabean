@@ -19,6 +19,8 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const { accountId } = useParams(); // Path Variable
 
+  const [userRole, setUserRole] = useState<string>("");
+
   const [loading, setLoading] = useState(true); // 서버에서 데이터 수신 여부 체크
 
   const [domesticTravelAccountDetailData, setDomesticTravelAccountDetailData] =
@@ -33,6 +35,22 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
   const handleTransferBalance = () => {
     navigate(`/accounts/travel/domestic/${accountId}/detail/transfer`);
   };
+
+  // Acount 서버 통장 권한 조회 API fetch 요청
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await client().get(
+          `api/accounts/travel/domestic/${accountId}/userRole`,
+        );
+        setUserRole(response.data.userRole);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserRole();
+  }, [accountId, userRole]);
 
   // Account 서버 한화 여행통장 상세 조회 API fetch 요청
   useEffect(() => {
@@ -169,7 +187,8 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
           <button
             type="button"
             onClick={handleTransferBalance}
-            className="btn-md w-1/2 mx-auto block"
+            className={`w-1/2 mx-auto block ${userRole === "ADMIN" ? "btn-md" : "btn-gray-lg"}`}
+            disabled={userRole !== "ADMIN"}
           >
             이체 하기
           </button>

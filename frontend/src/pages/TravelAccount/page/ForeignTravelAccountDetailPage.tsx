@@ -20,6 +20,8 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
 
   const nav = useNavigate();
 
+  const [userRole, setUserRole] = useState<string>("");
+
   const [loading1, setLoading1] = useState(true); // 서버에서 데이터 수신 여부 체크
   const [loading2, setLoading2] = useState(true); // 서버에서 데이터 수신 여부 체크
 
@@ -32,6 +34,22 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
 
   const openChangeFilterModal = () => setIsChangeFilterModalOpen(true);
   const closeChangeFilterModal = () => setIsChangeFilterModalOpen(false);
+
+  // Acount 서버 통장 권한 조회 API fetch 요청
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await client().get(
+          `api/accounts/travel/domestic/${accountId}/userRole`,
+        );
+        setUserRole(response.data.userRole);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserRole();
+  }, [accountId, userRole]);
 
   // Travel 서버 외화 여행통장 ID로 한화 여행통장 ID 반환
   useEffect(() => {
@@ -211,7 +229,8 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
                 `/accounts/travel/foreign/${parentAccountId}/charge?create=false&country=${foreignTravelAccountDetailData?.country}&exchangeCurrency=${foreignTravelAccountDetailData?.exchangeCurrency}&foreignAccountId=${accountId}`,
               );
             }}
-            className="btn-md w-1/2 mx-auto block"
+            className={`w-1/2 mx-auto block ${userRole === "ADMIN" ? "btn-md" : "btn-gray-lg"}`}
+            disabled={userRole !== "ADMIN"}
           >
             충전하기
           </button>

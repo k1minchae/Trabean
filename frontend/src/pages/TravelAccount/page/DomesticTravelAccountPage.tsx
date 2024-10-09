@@ -25,6 +25,8 @@ const DomesticTravelAccountPage: React.FC = () => {
 
   const nav = useNavigate();
 
+  const [userRole, setUserRole] = useState<string>("");
+
   const [loading1, setLoading1] = useState(true); // 서버에서 데이터 수신 여부 체크
   const [loading2, setLoading2] = useState(true); // 서버에서 데이터 수신 여부 체크
 
@@ -76,6 +78,23 @@ const DomesticTravelAccountPage: React.FC = () => {
   // const closeSplitModal = () => {
   //   setIsSplitModalOpen(false);
   // };
+
+  // Acount 서버 통장 권한 조회 API fetch 요청
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await client().get(
+          `api/accounts/travel/domestic/${accountId}/userRole`,
+        );
+        setUserRole(response.data.userRole);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserRole();
+  }, [accountId, userRole]);
+
   // Travel 서버 여행통장 조회 API fetch 요청
   useEffect(() => {
     const fetchTravelAccountData = async () => {
@@ -141,7 +160,11 @@ const DomesticTravelAccountPage: React.FC = () => {
           <div className="flex justify-between p-2">
             <div className="text-lg font-bold">{accountName}</div>
             <div>
-              <button type="button" onClick={openChangeAccountNameModal}>
+              <button
+                type="button"
+                onClick={openChangeAccountNameModal}
+                disabled={userRole !== "ADMIN"}
+              >
                 <img src={settings} alt={settings} className="w-6 h-6" />
               </button>
             </div>
@@ -220,7 +243,8 @@ const DomesticTravelAccountPage: React.FC = () => {
               onClick={() => {
                 nav(`/accounts/travel/foreign/${accountId}/create`);
               }}
-              className="btn-lg w-[90%] mx-auto block"
+              className={`w-[90%] mx-auto block ${userRole === "ADMIN" ? "btn-lg" : "btn-gray-lg"}`}
+              disabled={userRole !== "ADMIN"}
             >
               외화 추가하기
             </button>
@@ -233,7 +257,11 @@ const DomesticTravelAccountPage: React.FC = () => {
         <div className="rounded-2xl p-4 bg-white">
           <div className="flex justify-end">
             <div className="text-right text-xs mr-2">
-              <button type="button" onClick={openChangeTargetAmountModal}>
+              <button
+                type="button"
+                onClick={openChangeTargetAmountModal}
+                disabled={userRole !== "ADMIN"}
+              >
                 목표관리
               </button>
             </div>
@@ -243,6 +271,7 @@ const DomesticTravelAccountPage: React.FC = () => {
                 onClick={() =>
                   nav(`/accounts/travel/domestic/${accountId}/members`)
                 }
+                disabled={userRole !== "ADMIN"}
               >
                 멤버관리
               </button>
@@ -288,6 +317,7 @@ const DomesticTravelAccountPage: React.FC = () => {
               type="button"
               onClick={handleNBbang}
               className="flex flex-col items-center bg-white rounded-3xl px-6 py-2"
+              disabled={userRole !== "ADMIN"}
             >
               <div>
                 <img src={dollarCoin} alt="dollarCoin" className="w-10 h-10" />

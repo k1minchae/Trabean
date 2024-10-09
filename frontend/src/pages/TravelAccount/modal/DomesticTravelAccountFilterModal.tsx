@@ -22,6 +22,11 @@ const DomesticTravelAccountFilterModal: React.FC<
   const [accountCreationDate, setAccountCreationDate] = useState<string>(""); // 한화 여행통장 생성일 상태관리
   const [startDate, setStartDate] = useState<string>(); // 조회 시작일 상태관리
   const [endDate, setEndDate] = useState<string>(getToday()); // 조회 종료일 상태관리
+  const [selectedMemberId, setSelectedMemberId] = useState<number>(-1);
+
+  const handleMemberClick = (userId: number) => {
+    setSelectedMemberId(userId); // 클릭한 버튼의 userId를 상태로 설정
+  };
 
   const [travelAccountMemberData, setTravelAccountMemberData] =
     useState<TravelAccountMemberData>(); // 여행통장 멤버 상태관리
@@ -53,7 +58,7 @@ const DomesticTravelAccountFilterModal: React.FC<
 
     onClose();
     nav(
-      `/accounts/travel/domestic/${accountId}/detail?startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
+      `/accounts/travel/domestic/${accountId}/detail?startDate=${formattedStartDate}&endDate=${formattedEndDate}&member=${selectedMemberId}`,
     );
   };
 
@@ -157,7 +162,12 @@ const DomesticTravelAccountFilterModal: React.FC<
       {/* 멤버 목록 */}
       <div className="flex flex-wrap justify-center">
         {travelAccountMemberData?.members.map((member) => (
-          <div key={member.userId} className="flex flex-col items-center p-2">
+          <button
+            type="button"
+            onClick={() => handleMemberClick(member.userId)}
+            key={member.userId}
+            className={`flex flex-col items-center p-2 ${selectedMemberId === member.userId ? "border-2 border-green-500" : ""}`}
+          >
             <img
               src={getBeanImage(member.role)}
               alt={member.role}
@@ -167,7 +177,7 @@ const DomesticTravelAccountFilterModal: React.FC<
             {/* <div className="text-xs">
               ₩{(member.amount ?? 0).toLocaleString()}
             </div> */}
-          </div>
+          </button>
         ))}
       </div>
 

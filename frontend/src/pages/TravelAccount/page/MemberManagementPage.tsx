@@ -131,7 +131,7 @@ const MemberManagementPage: React.FC = () => {
               <div className="text-xl text-left">
                 {travelAccountData?.accountName}
               </div>
-              <div className="text-sm">
+              <div className="text-sm text-left">
                 {travelAccountData?.bankName} {travelAccountData?.accountNo}
               </div>
             </div>

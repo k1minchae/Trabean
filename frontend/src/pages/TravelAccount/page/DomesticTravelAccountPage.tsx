@@ -12,7 +12,7 @@ import {
   getCurrencySymbol,
 } from "../util/util";
 import TopBar from "../../../components/TopBar";
-import Alarm from "../component/Alarm";
+// import Alarm from "../component/Alarm";
 import TargetAmountProgressBar from "../component/TargetAmountProgressBar";
 import ChatBot from "../component/ChatBot";
 import Loading from "../component/Loading";
@@ -130,9 +130,9 @@ const DomesticTravelAccountPage: React.FC = () => {
       </div>
 
       {/* 알림 */}
-      <div className="px-4 py-2">
+      {/* <div className="px-4 py-2">
         <Alarm />
-      </div>
+      </div> */}
 
       {/* 여행통장 목록 */}
       <div className="px-4 py-2">

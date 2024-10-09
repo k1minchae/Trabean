@@ -37,6 +37,7 @@ import ChatbotPage from "./pages/ChatbotPage/ChatbotMainPage";
 import ChatMapPage from "./pages/ChatbotPage/ChatMapPage";
 import DPassword from "./pages/DomesticTransferPage/DPasswordPage";
 import DSuccessPage from "./pages/DomesticTransferPage/DTransferPage.DsuccessPage";
+import PersonalAccountDetailPage from "./pages/TravelAccount/page/PersonalAccountDetailPage";
 
 function App() {
   return (
@@ -67,6 +68,10 @@ function App() {
           <Route
             path="/accounts/travel/domestic/:accountId/detail/transfer/password"
             element={<DPassword />}
+          />
+          <Route
+            path="/accounts/personal/:accountId/detail"
+            element={<PersonalAccountDetailPage />}
           />
           <Route
             path="/accounts/travel/domestic/:accountId/detail"

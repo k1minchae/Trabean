@@ -58,7 +58,7 @@ export interface DomesticTravelAccountTransaction {
 
 export interface DomesticTravelAccountDetailData {
   accountName: string;
-  targetAmount: number;
+  targetAmount?: number;
   accountId: number;
   accountNo: string;
   accountBalance: number;

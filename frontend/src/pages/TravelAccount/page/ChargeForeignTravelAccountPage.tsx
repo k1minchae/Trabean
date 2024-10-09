@@ -133,7 +133,7 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
   // Travel 서버 환전 예상 금액 조회 API fetch 요청
   useEffect(() => {
     const fetchTravelAccountData = async () => {
-      if (maxAmount > 0 && amount) {
+      if (maxAmount >= 0 && amount) {
         try {
           const response = await client().post(
             "/api/travel/exchange/estimate",
@@ -143,14 +143,15 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
               amount,
             },
           );
+
           const estimatedKrwAmount = Number(
             removeCommas(response.data?.currency?.amount || "0"),
           ); // 콤마 제거 후 숫자로 변환
 
           // 예상 금액이 최대 금액을 초과하면 경고 메시지 표시
           if (estimatedKrwAmount > maxAmount) {
-            alert("환전에 필요한 금액이 한화 여행통장 잔액을 초과합니다.");
-            setAmount(""); // 입력 값 초기화
+            // alert("환전에 필요한 금액이 한화 여행통장 잔액을 초과합니다.");
+            setAmount(String(getMinimumAmount(exchangeCurrency))); // 입력 값 초기화
           } else {
             setExchangeEstimateData(response.data); // 예상 금액 저장
           }
@@ -168,7 +169,10 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
   }
 
   const minimumAmount = getMinimumAmount(exchangeCurrency);
-  const isButtonActive = amount !== "" && Number(amount) >= minimumAmount;
+  const isButtonActive =
+    maxAmount >=
+      Number(removeCommas(exchangeEstimateData?.currency?.amount ?? "0")) &&
+    Number(amount) >= minimumAmount;
 
   return (
     <div className="h-full relative">
@@ -213,8 +217,8 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
           type="button"
           onClick={handleChargeAccountBalance}
           disabled={!isButtonActive}
-          className={`btn-lg w-full py-2 text-white ${
-            isButtonActive ? "bg-green-500" : "bg-gray-300"
+          className={`w-full py-2 text-white ${
+            isButtonActive ? "btn-lg" : "btn-gray-lg"
           }`}
         >
           완료

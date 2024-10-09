@@ -164,9 +164,9 @@ const DomesticTravelAccountFilterModal: React.FC<
               className="w-10 h-10"
             />
             <div className="text-xs">{member.userName}</div>
-            <div className="text-xs">
+            {/* <div className="text-xs">
               ₩{(member.amount ?? 0).toLocaleString()}
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

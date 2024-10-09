@@ -54,7 +54,7 @@ const PersonalAccountFilterModal: React.FC<
 
     onClose();
     nav(
-      `/accounts/personal/${accountId}/detail?startDate=${formattedStartDate}&endDate=${formattedEndDate}}`,
+      `/accounts/personal/${accountId}/detail?startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
     );
   };
 
@@ -157,7 +157,7 @@ const PersonalAccountFilterModal: React.FC<
         </div>
       </div>
 
-      <div className="font-bold px-2 py-4">친구선택</div>
+      {/* <div className="font-bold px-2 py-4">친구선택</div> */}
 
       {/* 멤버 목록 */}
       {/* <div className="flex flex-wrap justify-center">

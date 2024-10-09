@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+// import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import beans from "../../assets/beans.png";
 import client from "../../client";
 import Loading from "../TravelAccount/component/Loading";
 
 const InvitePage: React.FC = () => {
-  const location = useLocation();
+  // const location = useLocation();
 
-  const queryParams = new URLSearchParams(location.search);
-  const email = queryParams.get("email");
+  const nav = useNavigate();
+
+  // const queryParams = new URLSearchParams(location.search);
+  // const email = queryParams.get("email");
 
   const { accountId } = useParams();
 
@@ -17,7 +20,33 @@ const InvitePage: React.FC = () => {
   const [accountName, setAccountName] = useState();
 
   const handleAcceptInvitation = () => {
-    alert("참여하기!!!!!!");
+    const fetchJoinMember = async () => {
+      try {
+        await client().post("/api/travel/join", {
+          accountId,
+        });
+        nav(`/accounts/travel/domestic/${accountId}`);
+      } catch (error) {
+        alert("가입에 실패했습니다.");
+        console.error(error);
+      }
+    };
+
+    const fetchFindJoinMember = async () => {
+      try {
+        const response = await client().get(
+          `/api/travel/invite-member/${accountId}`,
+        );
+
+        if (response.data) {
+          fetchJoinMember();
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFindJoinMember();
   };
 
   // Travel 서버 한화 여행통장 ID로 이름과 목표 금액 반환 API fetch 요청
@@ -55,10 +84,6 @@ const InvitePage: React.FC = () => {
         >
           참여하기
         </button>
-        <div>
-          <div>{accountId}</div>
-          <div>{email}</div>
-        </div>
       </div>
     </div>
   );

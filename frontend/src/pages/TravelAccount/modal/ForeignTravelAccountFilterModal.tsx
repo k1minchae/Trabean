@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import client from "../../../client";
-import { formatDateString, getBeanImage, getToday } from "../util/util";
-import { TravelAccountMemberData } from "../type/type";
+import { formatDateString, getToday } from "../util/util";
+// import { formatDateString, getBeanImage, getToday } from "../util/util";
+// import { TravelAccountMemberData } from "../type/type";
 import Loading from "../component/Loading";
 
 interface ForeignTravelAccountFilterModalProps {
@@ -18,15 +19,15 @@ const ForeignTravelAccountFilterModal: React.FC<
   const [parentAccountId, setParentAccountId] = useState();
 
   const [loading1, setLoading1] = useState(true); // 서버에서 데이터 수신 여부 체크
-  const [loading2, setLoading2] = useState(true); // 서버에서 데이터 수신 여부 체크
+  // const [loading2, setLoading2] = useState(true); // 서버에서 데이터 수신 여부 체크
 
   const [selectedOption, setSelectedOption] = useState<string>("all"); // 조회 옵션 상태관리
   const [accountCreationDate, setAccountCreationDate] = useState<string>(""); // 한화 여행통장 생성일 상태관리
   const [startDate, setStartDate] = useState<string>(); // 조회 시작일 상태관리
   const [endDate, setEndDate] = useState<string>(getToday()); // 조회 종료일 상태관리
 
-  const [travelAccountMemberData, setTravelAccountMemberData] =
-    useState<TravelAccountMemberData>(); // 여행통장 멤버 상태관리
+  // const [travelAccountMemberData, setTravelAccountMemberData] =
+  //   useState<TravelAccountMemberData>(); // 여행통장 멤버 상태관리
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStartDate(e.target.value); // 조회 시작일 상태 업데이트
@@ -85,27 +86,27 @@ const ForeignTravelAccountFilterModal: React.FC<
   // Travel 서버 외화 여행통장 ID로 한화 여행통장 IF 반환 API fetch 요청
   // Account 서버 한화 여행통장 멤버 목록 조회 API fetch 요청
   useEffect(() => {
-    const fetchTravelAccountData = async () => {
-      try {
-        const response = await client().get(
-          `/api/accounts/travel/domestic/${parentAccountId}/members`,
-        );
-        setTravelAccountMemberData(response.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading2(false);
-      }
-    };
+    // const fetchTravelAccountData = async () => {
+    //   try {
+    //     const response = await client().get(
+    //       `/api/accounts/travel/domestic/${parentAccountId}/members`,
+    //     );
+    //     setTravelAccountMemberData(response.data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   } finally {
+    //     setLoading2(false);
+    //   }
+    // };
 
     const fetchParentAccountId = async () => {
       try {
         const response = await client().get(`/api/travel/parents/${accountId}`);
         setParentAccountId(response.data.parentAccountId);
 
-        if (parentAccountId) {
-          fetchTravelAccountData();
-        }
+        // if (parentAccountId) {
+        //   fetchTravelAccountData();
+        // }
       } catch (error) {
         console.error(error);
       }
@@ -115,7 +116,10 @@ const ForeignTravelAccountFilterModal: React.FC<
   }, [accountId, parentAccountId]);
 
   // 로딩 중이면 로딩 스피너 표시
-  if (loading1 || loading2) {
+  // if (loading1 || loading2) {
+  //   return <Loading />;
+  // }
+  if (loading1) {
     return <Loading />;
   }
 
@@ -166,10 +170,10 @@ const ForeignTravelAccountFilterModal: React.FC<
         </div>
       </div>
 
-      <div className="font-bold px-2 py-4">친구선택</div>
+      {/* <div className="font-bold px-2 py-4">친구선택</div> */}
 
       {/* 멤버 목록 */}
-      <div className="flex flex-wrap justify-center">
+      {/* <div className="flex flex-wrap justify-center">
         {travelAccountMemberData?.members.map((member) => (
           <div key={member.userId} className="flex flex-col items-center p-2">
             <img
@@ -177,13 +181,13 @@ const ForeignTravelAccountFilterModal: React.FC<
               alt={member.role}
               className="w-10 h-10"
             />
-            <div className="text-xs">{member.userName}</div>
-            {/* <div className="text-xs">
+            <div className="text-xs">{member.userName}</div> */}
+      {/* <div className="text-xs">
               ₩{(member.amount ?? 0).toLocaleString()}
             </div> */}
-          </div>
+      {/* </div>
         ))}
-      </div>
+      </div> */}
 
       {/* 선택 완료 버튼 */}
       <div className="p-4 mb-4">

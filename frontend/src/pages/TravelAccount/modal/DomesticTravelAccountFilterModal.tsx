@@ -22,10 +22,10 @@ const DomesticTravelAccountFilterModal: React.FC<
   const [accountCreationDate, setAccountCreationDate] = useState<string>(""); // 한화 여행통장 생성일 상태관리
   const [startDate, setStartDate] = useState<string>(); // 조회 시작일 상태관리
   const [endDate, setEndDate] = useState<string>(getToday()); // 조회 종료일 상태관리
-  const [selectedMemberId, setSelectedMemberId] = useState<number>(-1);
+  const [selecedUserId, setSelecedUserId] = useState<number>(-1);
 
   const handleMemberClick = (userId: number) => {
-    setSelectedMemberId(userId); // 클릭한 버튼의 userId를 상태로 설정
+    setSelecedUserId(userId); // 클릭한 버튼의 userId를 상태로 설정
   };
 
   const [travelAccountMemberData, setTravelAccountMemberData] =
@@ -58,7 +58,7 @@ const DomesticTravelAccountFilterModal: React.FC<
 
     onClose();
     nav(
-      `/accounts/travel/domestic/${accountId}/detail?startDate=${formattedStartDate}&endDate=${formattedEndDate}&member=${selectedMemberId}`,
+      `/accounts/travel/domestic/${accountId}/detail?startDate=${formattedStartDate}&endDate=${formattedEndDate}&selecedUserId=${selecedUserId}`,
     );
   };
 
@@ -166,7 +166,7 @@ const DomesticTravelAccountFilterModal: React.FC<
             type="button"
             onClick={() => handleMemberClick(member.userId)}
             key={member.userId}
-            className={`flex flex-col items-center p-2 ${selectedMemberId === member.userId ? "border-2 border-green-500" : ""}`}
+            className={`flex flex-col items-center p-2 ${selecedUserId === member.userId ? "border-2 border-green-500" : ""}`}
           >
             <img
               src={getBeanImage(member.role)}

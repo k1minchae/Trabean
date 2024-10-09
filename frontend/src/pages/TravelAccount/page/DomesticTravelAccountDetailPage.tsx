@@ -15,7 +15,7 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const startDate = queryParams.get("startDate");
   const endDate = queryParams.get("endDate");
-  const selecedUserId = queryParams.get("selecedUserId");
+  const selectedUserId = queryParams.get("selectedUserId");
   const { accountId } = useParams(); // Path Variable
 
   const [loading, setLoading] = useState(true); // 서버에서 데이터 수신 여부 체크
@@ -39,7 +39,7 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
       try {
         const response = await client().get(
           `/api/accounts/travel/domestic/${accountId}`,
-          { params: { startDate, endDate, selecedUserId } },
+          { params: { startDate, endDate, selectedUserId } },
         );
         setDomesticTravelAccountDetailData(response.data);
       } catch (error) {
@@ -52,7 +52,7 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
     if (accountId) {
       getDomesticTravelAccountDetailData();
     }
-  }, [accountId, startDate, endDate, selecedUserId]);
+  }, [accountId, startDate, endDate, selectedUserId]);
 
   // 입금은 초록색, 출금은 빨간색으로 표시
   const getBalanceColor = (transactionType: string) => {

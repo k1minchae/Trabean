@@ -15,11 +15,13 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
   const foreignAccountId = queryParams.get("foreignAccountId");
   const { parentAccountId } = useParams();
 
+  const [minimumAmount, setMinimunAmount] = useState<number>(0); // 최소 환전 금액 상태관리
+  const [maxAmount, setMaxAmount] = useState<number>(0); // 최대 환전 금액 상태관리
+
   const nav = useNavigate();
 
   const [loading, setLoading] = useState(true);
 
-  const [maxAmount, setMaxAmount] = useState<number>(0); // 최대 환전 금액 상태관리
   const [amount, setAmount] = useState<string>(
     String(getMinimumAmount(exchangeCurrency)),
   ); // 외화 금액 상태관리
@@ -151,10 +153,10 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
           // 예상 금액이 최대 금액을 초과하면 경고 메시지 표시
           if (estimatedKrwAmount > maxAmount) {
             // alert("환전에 필요한 금액이 한화 여행통장 잔액을 초과합니다.");
-            setAmount(String(getMinimumAmount(exchangeCurrency))); // 입력 값 초기화
-          } else {
-            setExchangeEstimateData(response.data); // 예상 금액 저장
+            // setAmount(String(getMinimumAmount(exchangeCurrency))); // 입력 값 초기화
           }
+          setExchangeEstimateData(response.data); // 예상 금액 저장
+          setMinimunAmount(Number(removeCommas(response.data.currency.amount)));
         } catch (error) {
           console.error(error);
         }
@@ -168,11 +170,10 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
     return <Loading />;
   }
 
-  const minimumAmount = getMinimumAmount(exchangeCurrency);
   const isButtonActive =
-    maxAmount >=
-      Number(removeCommas(exchangeEstimateData?.currency?.amount ?? "0")) &&
-    Number(amount) >= minimumAmount;
+    maxAmount >= minimumAmount &&
+    Number(amount) >= Number(getMinimumAmount(exchangeCurrency)) &&
+    amount.endsWith("0");
 
   return (
     <div className="h-full relative">
@@ -201,8 +202,22 @@ const ChargeForeignTravelAccountPage: React.FC = () => {
         </div>
       </div>
 
+      <div className="px-4">
+        <div className="font-bold text-sm text-red-400">
+          {maxAmount < minimumAmount ? "잔액이 부족합니다." : ""}
+        </div>
+        <div className="font-bold text-sm text-red-400">
+          {Number(amount) < Number(getMinimumAmount(exchangeCurrency))
+            ? "최소 환전 금액이 부족합니다."
+            : ""}
+        </div>
+        <div className="font-bold text-sm text-red-400">
+          {amount.endsWith("0") ? "" : "10 단위로 환전이 가능합니다."}
+        </div>
+      </div>
+
       {/* 예상 소요 금액 렌더링 */}
-      <div className="p-4">
+      <div className="px-4 py-2">
         <div className="font-bold text-sm text-gray-500 mb-2">한국 KRW</div>
         <div className="font-bold text-sm text-gray-500">
           {exchangeEstimateData?.currency?.amount

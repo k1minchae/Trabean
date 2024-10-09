@@ -229,8 +229,8 @@ const ForeignTravelAccountDetailPage: React.FC = () => {
                 `/accounts/travel/foreign/${parentAccountId}/charge?create=false&country=${foreignTravelAccountDetailData?.country}&exchangeCurrency=${foreignTravelAccountDetailData?.exchangeCurrency}&foreignAccountId=${accountId}`,
               );
             }}
-            className={`w-1/2 mx-auto block ${userRole === "ADMIN" ? "btn-md" : "btn-gray-lg"}`}
-            disabled={userRole !== "ADMIN"}
+            className={`w-1/2 mx-auto block ${userRole === "NONE_PAYER" ? "btn-gray-lg" : "btn-md"}`}
+            disabled={userRole === "NONE_PAYER"}
           >
             충전하기
           </button>

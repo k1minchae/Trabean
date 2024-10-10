@@ -187,7 +187,7 @@ const DomesticTravelAccountDetailPage: React.FC = () => {
           <button
             type="button"
             onClick={handleTransferBalance}
-            className={`w-1/2 mx-auto block ${userRole === "NONE_PAYER" ? "btn-gray-lg" : "btn-md"}`}
+            className={`w-1/2 mx-auto block ${userRole === "NONE_PAYER" ? "btn-gray-md" : "btn-md"}`}
             disabled={userRole === "NONE_PAYER"}
           >
             이체 하기

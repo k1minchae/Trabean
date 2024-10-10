@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import classNames from "classnames";
+
+import { EventSourcePolyfill, NativeEventSource } from "event-source-polyfill";
+import useAuthStore from "../store/useAuthStore";
 
 import NotificationModal from "../pages/NotificationPage/NotificationPage";
 
@@ -29,6 +32,76 @@ const BottomBar: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const token = useAuthStore.getState().accessToken;
+
+  const [hasNotification, setHasNotification] = useState(false);
+
+  useEffect(() => {
+    if (!token) return;
+
+    const EventSource = EventSourcePolyfill || NativeEventSource;
+
+    const eventSource = new EventSource(
+      `${process.env.REACT_APP_END_POINT}/api/notifications/status`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      },
+    );
+
+    eventSource.onmessage = (event: MessageEvent) => {
+      const data = JSON.parse(event.data);
+      if (data.newNotification) {
+        setHasNotification(true);
+      }
+    };
+
+    eventSource.onerror = (event: MessageEvent) => {
+      console.error("Error occurred:", event);
+      eventSource.close();
+    };
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      eventSource.close();
+    };
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) return;
+
+    const EventSource = EventSourcePolyfill || NativeEventSource;
+
+    const eventSource = new EventSource(
+      `${process.env.REACT_APP_END_POINT}/api/notifications/status`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      },
+    );
+
+    eventSource.onmessage = (event: MessageEvent) => {
+      const data = JSON.parse(event.data);
+      if (data.newNotification) {
+        setHasNotification(true);
+      }
+    };
+
+    eventSource.onerror = (event: MessageEvent) => {
+      console.error("Error occurred:", event);
+      eventSource.close();
+    };
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      eventSource.close();
+    };
+  }, [token]);
 
   const getNotification = async () => {
     const response = await client().get(`/api/notifications`);
@@ -141,10 +214,13 @@ const BottomBar: React.FC = () => {
             <div
               onClick={() => changeNotiHidden(notiHidden)}
               role="presentation"
-              className={containerClass}
+              className={`${containerClass} relative`}
             >
               <img src={Bell} alt="Bell" className={imgClass} />
               <p className={textClass}>알림</p>
+              {hasNotification && (
+                <div className="w-2 h-2 rounded-full bg-red-500 z-20 absolute right-5 top-[-23px]" />
+              )}
             </div>
           </div>
         </>

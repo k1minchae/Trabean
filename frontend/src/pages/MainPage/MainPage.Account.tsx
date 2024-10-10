@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+import { useEffect, useState } from "react";
 import soyIcon from "../../assets/icon/soyIcon.png";
 import arrowRIcon from "../../assets/icon/arrowRIcon.png";
 import { formatNumberWithCommas } from "../../utils/formatNumber";
@@ -10,6 +11,7 @@ type Account = {
   accountName: string;
   bankName: string;
   accountBalance: number;
+  accountType: string;
 };
 
 interface AccountProps {
@@ -17,12 +19,27 @@ interface AccountProps {
 }
 
 function Account({ account }: AccountProps) {
+  const [url, setUrl] = useState<string>();
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const settingUrl = () => {
+      if (account.accountType === "PERSONAL") {
+        setUrl(`/accounts/personal/${account.accountId}/detail`);
+      } else if (account.accountType === "DOMESTIC") {
+        setUrl(`/accounts/travel/domestic/${account.accountId}`);
+      }
+    };
+
+    settingUrl();
+  }, [account]);
+
   return (
     <div
-      role="presentation"
       className="flex items-center px-3 my-3"
-      onClick={() => navigate(`/accounts/travel/domestic/${account.accountId}`)}
+      onClick={() => url && navigate(url)}
+      role="presentation"
     >
       <img src={soyIcon} alt="통장아이콘" className="w-[30px] mr-2" />
       <div className="w-full flex justify-between items-center">

@@ -24,7 +24,7 @@ import DTransferList from "./pages/DomesticTransferPage/DTransferPage.DTransferL
 import PasswordPage from "./pages/TransferPage/PasswordPage";
 import SuccessPage from "./pages/TransferPage/TransferPage.successPage";
 import BottomBar from "./components/BottomBar";
-import Notification from "./pages/NotificationPage/NotificationPage";
+// import Notification from "./pages/NotificationPage/NotificationPage";
 import DomesticTravelAccountPage from "./pages/TravelAccount/page/DomesticTravelAccountPage";
 import DomesticTravelAccountDetailPage from "./pages/TravelAccount/page/DomesticTravelAccountDetailPage";
 import ForeignTravelAccountDetailPage from "./pages/TravelAccount/page/ForeignTravelAccountDetailPage";
@@ -137,7 +137,7 @@ function App() {
           />
           <Route path="/transfer/success" element={<SuccessPage />} />
           <Route path="/transfer/success/domestic" element={<DSuccessPage />} />
-          <Route path="/notification" element={<Notification />} />
+          {/* <Route path="/notification" element={<Notification />} /> */}
         </Route>
       </Routes>
 

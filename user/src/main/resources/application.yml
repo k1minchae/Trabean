@@ -1,0 +1,87 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: trabean604@gmail.com
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+  mvc:
+    cors:
+      mappings:
+        # 모든 엔드포인트에 대해 CORS 설정
+        "/**":
+          allowed-origins: "http://localhost:3000"
+          allowed-methods: "GET,POST,PUT,DELETE"
+          allowed-headers: "*"
+          allow-credentials: true
+
+# JWT 설정
+jwt:
+  issuer: yhyh
+  header: Authorization
+  secretKey: NiOeyFbN1Gqo10bPgUyTFsRMkJpGLXSvGP04eFqj5B30r5TcrtlSXfQ7TndvYjNvfkEKLqILn0j1SmKODO1Yw3JpBBgI3nVPEahqxeY8qbPSFGyzyEVxnl4AQcrnVneI
+  access-token-validity-in-seconds: 360000
+
+
+# API 설정
+# 이메일 인증 코드 만료 시간 설정 (분 단위)
+app:
+  email-verification:
+    code-expiration-minutes: 5
+  api:
+    url: http://j11a604.p.ssafy.io
+    # production-url: http://j11a604.p.ssafy.io:8081/
+
+# 외부 API 키 설정
+API_KEY: ${API_KEY}
+
+# Eureka 설정
+eureka:
+  instance:
+    hostname: j11a604.p.ssafy.io
+  client:
+    register-with-eureka: true  # Eureka ??? ?? ??
+    fetch-registry: true  # Eureka ???? ??? ??? ??? ???? ??
+    service-url:
+      defaultZone: http://j11a604.p.ssafy.io:8761/eureka # Eureka ??? ?? URL (??? ?? URL? ???? ?)
+
+# 관리 엔드포인트 설정
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"  # 모든 엔드포인트를 노출시킴
+
+# 로깅 설정
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    # org.hibernate: DEBUG
+    # org.springframework: DEBUG
+    # org.springframework.mail: DEBUG
+    org.springframework.security: DEBUG
+    root: info

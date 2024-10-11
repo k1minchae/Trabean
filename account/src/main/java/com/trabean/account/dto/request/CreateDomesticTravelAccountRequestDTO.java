@@ -1,10 +1,17 @@
 package com.trabean.account.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
 public class CreateDomesticTravelAccountRequestDTO {
-    private String userKey;
-    private Long userId;
+
+    @JsonProperty("password")
     private String password;
+
+    @JsonProperty("accountName")
+    private String accountName;
+
+    @JsonProperty("targetAmount")
+    private Long targetAmount;
 }

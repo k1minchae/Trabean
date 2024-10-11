@@ -1,6 +1,7 @@
 package com.trabean.account.dto.response;
 
-import com.trabean.ssafy.api.response.code.ResponseCode;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.trabean.account.domain.Account.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,16 +14,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountListResponseDTO {
-    private ResponseCode responseCode;
-    private String responseMessage;
 
+    @JsonProperty("mainAccount")
+    private Account mainAccount;
+
+    @JsonProperty("accountList")
     private List<Account> accountList;
 
     @Builder
     @Getter
     public static class Account {
-        private String bankName;
+        private Long accountId;
         private String accountNo;
+        private String accountName;
+        private String bankName;
         private Long accountBalance;
+        private AccountType accountType;
     }
 }

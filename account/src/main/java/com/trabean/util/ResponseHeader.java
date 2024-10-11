@@ -1,6 +1,6 @@
 package com.trabean.util;
 
-import com.trabean.ssafy.api.response.code.ResponseCode;
+import com.trabean.common.ResponseCode;
 import lombok.Getter;
 
 /**

@@ -24,6 +24,13 @@ public class Account {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Long userId;
+    private AccountType accountType;
+
+    public enum AccountType {
+        PERSONAL,
+        DOMESTIC,
+        FOREIGN
+    }
 }

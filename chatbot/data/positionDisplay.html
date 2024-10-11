@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps with Multiple Markers</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTyW2rE2HZ-kLEWk22mUtKQOfVYPd5BjQ"></script>
+    <script>
+      function initMap() {
+        // 지도 중심 위치 설정 (첫 번째 좌표를 중심으로 설정)
+        const centerPosition = { lat: 37.5665, lng: 126.978 }; // 예: 서울
+
+        // 지도 생성
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: centerPosition,
+        });
+
+        // 위/경도 리스트 (순서대로)
+        const coordinates = [
+          { lat: 37.5665, lng: 126.978 }, // 서울
+          { lat: 37.579617, lng: 126.977041 }, // 경복궁
+          { lat: 37.551169, lng: 126.988226 }, // 남산타워
+          { lat: 37.510865, lng: 127.034581 }, // 강남역
+        ];
+
+        // 마커 스타일 설정 (하얀색 배경, 큰 글씨)
+        const markerStyle = {
+          color: "black",
+          fontSize: "16px",
+          fontWeight: "bold",
+          background: "#000000", // 마커가 잘 보이도록 테두리 색상 설정
+          padding: "10px",
+        };
+
+        // 파스텔 무지개 색상 배열
+        const pastelRainbowColors = [
+          "#FFADAD",
+          "#FFD6A5",
+          "#FDFFB6",
+          "#CAFFBF",
+          "#A0C4FF",
+          "#BDB2FF",
+          "#FFC6FF",
+        ];
+        const bounds = new google.maps.LatLngBounds();
+
+        // 순서대로 마커 추가
+        const markers = [];
+        for (let i = 0; i < coordinates.length; i++) {
+          const marker = new google.maps.Marker({
+            position: coordinates[i],
+            map: map,
+            label: {
+              text: `${i + 1}`,
+              color: markerStyle.color,
+              fontSize: markerStyle.fontSize,
+              fontWeight: markerStyle.fontWeight,
+            },
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              fillColor: pastelRainbowColors[i % pastelRainbowColors.length],
+              fillOpacity: 0.9,
+              strokeColor: "black",
+              strokeWeight: 0,
+              scale: 20, // 마커 크기 조절
+            },
+          });
+          markers.push(marker);
+          bounds.extend(coordinates[i]); // 경계를 확장하여 모든 마커 포함
+        }
+
+        // 점선 스타일을 위한 Symbol 설정
+        const lineSymbol = {
+          path: "M 0,-1 0,1", // 점선 패턴
+          strokeOpacity: 1,
+          scale: 5,
+        };
+
+        // Polyline 설정 (마커 순서대로 선으로 잇기)
+        const pathLine = new google.maps.Polyline({
+          path: coordinates,
+          geodesic: true,
+          strokeColor: "#000000", // 선 색상 설정 (빨간색)
+          strokeOpacity: 0,
+          strokeWeight: 30,
+          icons: [
+            {
+              icon: lineSymbol,
+              offset: "0",
+              repeat: "20px", // 점선 간격 조절
+            },
+          ],
+        });
+        pathLine.setMap(map);
+        map.fitBounds(bounds); // 모든 마커가 화면에 표시되도록 줌 및 중심 조정
+      }
+    </script>
+    <style>
+      /* 지도 크기 설정 */
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body onload="initMap()">
+    <h3>Google Map with Customized Markers and Polyline</h3>
+    <div id="map"></div>
+  </body>
+</html>

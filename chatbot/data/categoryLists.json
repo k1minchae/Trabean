@@ -1,0 +1,73 @@
+{
+  "체험/액티비티": [
+    "amusement_park",
+    "aquarium",
+    "bowling_alley",
+    "zoo",
+    "museum"
+  ],
+  "관람": [
+    "art_gallery",
+    "church",
+    "hindu_temple",
+    "synagogue",
+    "performing_arts_theater"
+  ],
+  "쇼핑": [
+    "book_store",
+    "department_store",
+    "furniture_store",
+    "jewelry_store",
+    "liquor_store",
+    "shopping_mall"
+  ],
+  "먹방": ["bakery", "bar", "cafe", "ice_cream_shop"],
+  "자연 속 힐링": [
+    "park",
+    "campground",
+    "rv_park",
+    "national_park",
+    "hiking_area"
+  ],
+  "아이와 함께": [
+    "amusement_park",
+    "aquarium",
+    "zoo",
+    "museum",
+    "amusement_center",
+    "historical_landmark",
+    "national_park",
+    "tourist_attraction"
+  ],
+  "친구와 함께": [
+    "amusement_park",
+    "aquarium",
+    "casino",
+    "event_venue",
+    "tourist_attraction",
+    "stadium"
+  ],
+  "가족과 함께": [
+    "aquarium",
+    "national_park",
+    "zoo",
+    "museum",
+    "park",
+    "movie_theater",
+    "historical_landmark",
+    "tourist_attraction",
+    "spa"
+  ],
+  "나홀로 여행": [
+    "art_gallery",
+    "museum",
+    "historical_landmark",
+    "national_park",
+    "library",
+    "cafe",
+    "book_store",
+    "tourist_attraction",
+    "spa",
+    "hiking_area"
+  ]
+}

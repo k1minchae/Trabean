@@ -1,0 +1,166 @@
+{
+  "places": [
+    {
+      "id": "ChIJd33LelSTaDURmqUZQvL9uEc",
+      "formattedAddress": "대한민국 부산광역시 연제구 중앙대로 1001",
+      "location": {
+        "latitude": 35.179665,
+        "longitude": 129.0747635
+      },
+      "rating": 4.2,
+      "googleMapsUri": "https://maps.google.com/?cid=5168159789340534170",
+      "userRatingCount": 406,
+      "displayName": {
+        "text": "부산광역시청",
+        "languageCode": "ko"
+      },
+      "primaryType": "city_hall"
+    },
+    {
+      "id": "ChIJiyI1zFaTaDURC8fhhWE2Gmo",
+      "formattedAddress": "대한민국 부산광역시 연제구 신촌로 19",
+      "location": {
+        "latitude": 35.1827768,
+        "longitude": 129.0762561
+      },
+      "rating": 4.4,
+      "googleMapsUri": "https://maps.google.com/?cid=7645483109900732171",
+      "userRatingCount": 118,
+      "displayName": {
+        "text": "부산시티호텔",
+        "languageCode": "ko"
+      },
+      "primaryType": "hotel",
+      "goodForChildren": true,
+      "paymentOptions": {
+        "acceptsCreditCards": true
+      }
+    },
+    {
+      "id": "ChIJv2CrnVKTaDURO9qLyG7RvS0",
+      "formattedAddress": "대한민국 부산광역시 연제구 연수로 89",
+      "location": {
+        "latitude": 35.1761281,
+        "longitude": 129.0813107
+      },
+      "rating": 4.1,
+      "googleMapsUri": "https://maps.google.com/?cid=3296020776046287419",
+      "userRatingCount": 2727,
+      "displayName": {
+        "text": "이마트 연제점",
+        "languageCode": "ko"
+      },
+      "primaryType": "supermarket",
+      "paymentOptions": {
+        "acceptsCreditCards": true,
+        "acceptsCashOnly": false
+      }
+    },
+    {
+      "id": "ChIJF9AD9lqTaDURofVWyqSZTyw",
+      "formattedAddress": "대한민국 부산광역시 연제구 거제천로154번길 42",
+      "location": {
+        "latitude": 35.186301199999996,
+        "longitude": 129.0789024
+      },
+      "rating": 4.2,
+      "googleMapsUri": "https://maps.google.com/?cid=3192939593877353889",
+      "userRatingCount": 155,
+      "displayName": {
+        "text": "시애틀비 호텔",
+        "languageCode": "ko"
+      },
+      "primaryType": "hotel",
+      "goodForChildren": true,
+      "paymentOptions": {
+        "acceptsCreditCards": true
+      }
+    },
+    {
+      "id": "ChIJr_PD31qTaDUR0p_V2BjIKU8",
+      "formattedAddress": "대한민국 부산광역시",
+      "location": {
+        "latitude": 35.186544,
+        "longitude": 129.08024749999998
+      },
+      "rating": 4.6,
+      "googleMapsUri": "https://maps.google.com/?cid=5704310412084092882",
+      "userRatingCount": 11,
+      "displayName": {
+        "text": "연산역",
+        "languageCode": "ko"
+      },
+      "primaryType": "transit_station"
+    },
+    {
+      "id": "ChIJLdRIwVSTaDURglYrHs5UWOU",
+      "formattedAddress": "대한민국 부산광역시 부산진구 중앙대로 993",
+      "location": {
+        "latitude": 35.1780269,
+        "longitude": 129.0745584
+      },
+      "rating": 4.3,
+      "googleMapsUri": "https://maps.google.com/?cid=16526052076882187906",
+      "userRatingCount": 203,
+      "displayName": {
+        "text": "부산고용복지+센터",
+        "languageCode": "ko"
+      }
+    },
+    {
+      "id": "ChIJ6TKB8VqTaDUR12AqmT-vQ14",
+      "formattedAddress": "대한민국 부산광역시 연제구 월드컵대로153번길 9",
+      "location": {
+        "latitude": 35.1860928,
+        "longitude": 129.0793943
+      },
+      "rating": 4.3,
+      "googleMapsUri": "https://maps.google.com/?cid=6792465350692331735",
+      "userRatingCount": 114,
+      "displayName": {
+        "text": "연산 하운드호텔 (Hound Hotel Yeonsan)",
+        "languageCode": "ko"
+      },
+      "primaryType": "hotel",
+      "paymentOptions": {
+        "acceptsCreditCards": true
+      }
+    },
+    {
+      "id": "ChIJzzhAPk2TaDURic46Bqlz85A",
+      "formattedAddress": "대한민국 부산광역시 연제구 연수로 110",
+      "location": {
+        "latitude": 35.1749898,
+        "longitude": 129.0830345
+      },
+      "rating": 3.8,
+      "googleMapsUri": "https://maps.google.com/?cid=10444819130593496713",
+      "userRatingCount": 966,
+      "displayName": {
+        "text": "다이소 부산연제점",
+        "languageCode": "ko"
+      },
+      "primaryType": "home_goods_store",
+      "paymentOptions": {
+        "acceptsCreditCards": true,
+        "acceptsCashOnly": false
+      }
+    },
+    {
+      "id": "ChIJvfjhwlKTaDURmMIHFvF01lk",
+      "formattedAddress": "대한민국 부산광역시 연제구 연제로 2",
+      "location": {
+        "latitude": 35.1762217,
+        "longitude": 129.0796413
+      },
+      "rating": 4.3,
+      "googleMapsUri": "https://maps.google.com/?cid=6473490093197214360",
+      "userRatingCount": 20,
+      "displayName": {
+        "text": "연제구청",
+        "languageCode": "ko"
+      },
+      "primaryType": "local_government_office"
+    }
+  ]
+}

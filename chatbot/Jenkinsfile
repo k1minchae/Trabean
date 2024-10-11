@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "chatbot-app"  // 로컬 환경에서 사용할 이미지 이름
+        TAG = "${env.BUILD_ID}"     // 빌드 ID를 태그로 사용하여 고유 이미지 이름 지정
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // GitLab에서 FastAPI 프로젝트를 클론
+                git branch: 'chatbot', url: 'https://lab.ssafy.com/s11-fintech-finance-sub1/S11P21A604.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Docker 이미지를 로컬에 빌드 (chatbot 폴더 내의 Dockerfile을 사용)
+                    docker.build("${IMAGE_NAME}:${TAG}", "-f chatbot/Dockerfile chatbot")
+                }
+            }
+        }
+
+        stage('Deploy Docker Container') {
+            steps {
+                script {
+                    // 기존에 실행 중인 컨테이너가 있다면 중지하고 삭제
+                    sh "docker stop chatbot-app-${TAG} || true"
+                    sh "docker rm chatbot-app-${TAG} || true"
+
+                    // 새로운 Docker 컨테이너 실행 (고유한 컨테이너 이름 사용)
+                    docker.image("${IMAGE_NAME}:${TAG}").run("-d -p 8082:8082 --name chatbot-app-${TAG}")
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline complete'
+        }
+    }
+}

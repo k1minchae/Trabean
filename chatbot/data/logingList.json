@@ -1,0 +1,12 @@
+{
+  "호텔": ["hotel"],
+  "글램핑/캠핑": ["rv_park", "campground", "farmstay"],
+  "리조트": ["resort_hotel", "cottage"],
+  "공유숙박": [
+    "private_guest_room",
+    "bed_and_breakfast",
+    "guest_house",
+    "hostel"
+  ],
+  "모텔": ["motel"]
+}

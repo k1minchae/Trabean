@@ -1,0 +1,189 @@
+{
+  "name": "places/ChIJY_TpywCkfDUR1pRi_ZAyUWM",
+  "id": "ChIJY_TpywCkfDUR1pRi_ZAyUWM",
+  "types": ["hotel", "lodging", "point_of_interest", "establishment"],
+  "nationalPhoneNumber": "02-508-3002",
+  "internationalPhoneNumber": "+82 2-508-3002",
+  "formattedAddress": "대한민국 서울특별시 강남구 역삼동 테헤란로38길 7",
+  "addressComponents": [
+    {
+      "longText": "7",
+      "shortText": "7",
+      "types": ["premise"],
+      "languageCode": "ko"
+    },
+    {
+      "longText": "테헤란로38길",
+      "shortText": "테헤란로38길",
+      "types": ["sublocality_level_4", "sublocality", "political"],
+      "languageCode": "ko"
+    },
+    {
+      "longText": "역삼동",
+      "shortText": "역삼동",
+      "types": ["sublocality_level_2", "sublocality", "political"],
+      "languageCode": "ko"
+    },
+    {
+      "longText": "강남구",
+      "shortText": "강남구",
+      "types": ["sublocality_level_1", "sublocality", "political"],
+      "languageCode": "ko"
+    },
+    {
+      "longText": "서울특별시",
+      "shortText": "서울특별시",
+      "types": ["administrative_area_level_1", "political"],
+      "languageCode": "ko"
+    },
+    {
+      "longText": "대한민국",
+      "shortText": "KR",
+      "types": ["country", "political"],
+      "languageCode": "ko"
+    },
+    {
+      "longText": "06221",
+      "shortText": "06221",
+      "types": ["postal_code"],
+      "languageCode": "ko"
+    }
+  ],
+  "plusCode": {
+    "globalCode": "8Q99G22R+HM",
+    "compoundCode": "G22R+HM 대한민국 서울특별시"
+  },
+  "location": {
+    "latitude": 37.5014627,
+    "longitude": 127.04170250000001
+  },
+  "viewport": {
+    "low": {
+      "latitude": 37.5001137197085,
+      "longitude": 127.04035351970852
+    },
+    "high": {
+      "latitude": 37.502811680291494,
+      "longitude": 127.04305148029151
+    }
+  },
+  "rating": 3.4,
+  "googleMapsUri": "https://maps.google.com/?cid=7156556881176204502",
+  "utcOffsetMinutes": 540,
+  "adrFormatAddress": "<span class=\"country-name\">대한민국</span> <span class=\"region\">서울특별시</span> <span class=\"locality\">강남구</span> <span class=\"street-address\">역삼동 테헤란로38길 7</span> <span class=\"postal-code\">06221</span>",
+  "businessStatus": "OPERATIONAL",
+  "userRatingCount": 53,
+  "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/hotel_pinlet",
+  "iconBackgroundColor": "#909CE1",
+  "displayName": {
+    "text": "베리식스호텔",
+    "languageCode": "ko"
+  },
+  "primaryTypeDisplayName": {
+    "text": "호텔",
+    "languageCode": "ko"
+  },
+  "primaryType": "hotel",
+  "shortFormattedAddress": "강남구 역삼동 테헤란로38길 7",
+  "reviews": [
+    {
+      "name": "places/ChIJY_TpywCkfDUR1pRi_ZAyUWM/reviews/ChdDSUhNMG9nS0VJQ0FnSUNBcDhlVHZBRRAB",
+      "relativePublishTimeDescription": "6년 전",
+      "rating": 3,
+      "text": {
+        "text": "블루투스 스피커가 있어서좋고 깔끔해요\n다만 윗방 방음이 너무안되네요",
+        "languageCode": "ko"
+      },
+      "originalText": {
+        "text": "블루투스 스피커가 있어서좋고 깔끔해요\n다만 윗방 방음이 너무안되네요",
+        "languageCode": "ko"
+      },
+      "authorAttribution": {
+        "displayName": "Jay Red",
+        "uri": "https://www.google.com/maps/contrib/111333365464830799882/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJa1Xp2L64_oFzlt5bzzZPA1MlfQ3ACPuT0SMQxaakhQB7-Dg=s128-c0x00000000-cc-rp-mo-ba4"
+      },
+      "publishTime": "2017-11-16T03:28:20Z"
+    },
+    {
+      "name": "places/ChIJY_TpywCkfDUR1pRi_ZAyUWM/reviews/ChdDSUhNMG9nS0VJQ0FnSUNzc1BPbGpnRRAB",
+      "relativePublishTimeDescription": "4년 전",
+      "rating": 1,
+      "text": {
+        "text": "방음도 안되고 시설도 구리고 비누도 없고 먼지는 가득하고 제대로 된 것이 없는 곳",
+        "languageCode": "ko"
+      },
+      "originalText": {
+        "text": "방음도 안되고 시설도 구리고 비누도 없고 먼지는 가득하고 제대로 된 것이 없는 곳",
+        "languageCode": "ko"
+      },
+      "authorAttribution": {
+        "displayName": "Dohyun",
+        "uri": "https://www.google.com/maps/contrib/107515816269339177295/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWt6ChC6G2RvCrMp4ng-pQcy0rKo5k_w421XDYKj-5tb3FhWBX3=s128-c0x00000000-cc-rp-mo"
+      },
+      "publishTime": "2020-01-19T14:49:49Z"
+    },
+    {
+      "name": "places/ChIJY_TpywCkfDUR1pRi_ZAyUWM/reviews/ChZDSUhNMG9nS0VJQ0FnSUNDeUtTQVRBEAE",
+      "relativePublishTimeDescription": "4년 전",
+      "rating": 2,
+      "text": {
+        "text": "자고 일어났더니 두드러기 남 분위기도 어둡고 밝은 등이 없어서 아쉽",
+        "languageCode": "ko"
+      },
+      "originalText": {
+        "text": "자고 일어났더니 두드러기 남 분위기도 어둡고 밝은 등이 없어서 아쉽",
+        "languageCode": "ko"
+      },
+      "authorAttribution": {
+        "displayName": "이민수",
+        "uri": "https://www.google.com/maps/contrib/114873999535580877529/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWHn-2nAN4jbPrduFNR2Hglix6YhaFlKRhPU2UN0v9o-TJFO2PS=s128-c0x00000000-cc-rp-mo-ba4"
+      },
+      "publishTime": "2020-08-09T05:17:19Z"
+    },
+    {
+      "name": "places/ChIJY_TpywCkfDUR1pRi_ZAyUWM/reviews/ChZDSUhNMG9nS0VJQ0FnSURNcU5Qc1NREAE",
+      "relativePublishTimeDescription": "4년 전",
+      "rating": 5,
+      "text": {
+        "text": "방이 좀 넓고 욕조도 넓고 깊음 괜춘 다음에 무조건 또 감",
+        "languageCode": "ko"
+      },
+      "originalText": {
+        "text": "방이 좀 넓고 욕조도 넓고 깊음 괜춘 다음에 무조건 또 감",
+        "languageCode": "ko"
+      },
+      "authorAttribution": {
+        "displayName": "현준",
+        "uri": "https://www.google.com/maps/contrib/101760649339765244085/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIl4SPVrdeXZZIZc6Wca7wW4leJmcX3zyJ62ntx2BQZHcy5MQ=s128-c0x00000000-cc-rp-mo-ba3"
+      },
+      "publishTime": "2019-12-15T05:42:11Z"
+    },
+    {
+      "name": "places/ChIJY_TpywCkfDUR1pRi_ZAyUWM/reviews/ChZDSUhNMG9nS0VJQ0FnSURvenBMekdBEAE",
+      "relativePublishTimeDescription": "5년 전",
+      "rating": 5,
+      "text": {
+        "text": "넓고 깔끔하고 욕조도 크고 수압도 좋습니다",
+        "languageCode": "ko"
+      },
+      "originalText": {
+        "text": "넓고 깔끔하고 욕조도 크고 수압도 좋습니다",
+        "languageCode": "ko"
+      },
+      "authorAttribution": {
+        "displayName": "최정환",
+        "uri": "https://www.google.com/maps/contrib/104713343508622644895/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocKcXGEqabI-QoXBR9S8IS0zdy4h2sBDoSG8_kDsPx9lJEYjwQ=s128-c0x00000000-cc-rp-mo"
+      },
+      "publishTime": "2019-03-16T04:22:31Z"
+    }
+  ],
+  "goodForChildren": false,
+  "paymentOptions": {
+    "acceptsCreditCards": true
+  }
+}

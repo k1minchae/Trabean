@@ -61,7 +61,7 @@
 
 ### 2. 기술스택
 
-[![My Skills](https://skillicons.dev/icons?i=spring,react,ts,tailwind,mysql)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=spring,fastapi,react,ts,tailwind,mysql)](https://skillicons.dev)
 <br>
 [![My Skills](https://skillicons.dev/icons?i=docker,jenkins,idea,vscode,postman,git,gitlab,notion,figma)](https://skillicons.dev)
 

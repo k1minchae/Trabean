@@ -14,6 +14,11 @@ WORKDIR /app
 # 빌드된 JAR 파일을 /app 디렉토리에 복사합니다.
 COPY build/libs/travel-0.0.1-SNAPSHOT.jar app.jar
 
+COPY ./_.koreaexim.go.kr.crt /cert/_.koreaexim.go.kr.crt
+
+# 컨테이너 내부에서 인증서 추가
+RUN keytool -import -alias mycert -keystore "$JAVA_HOME/lib/security/cacerts" -storepass changeit -file /cert/_.koreaexim.go.kr.crt -noprompt
+
 # ARG 변수를 ENV로 설정하여 컨테이너 실행 시 사용할 수 있도록 합니다.
 ENV DB_HOST=${DB_HOST}
 ENV DB_PORT=${DB_PORT}

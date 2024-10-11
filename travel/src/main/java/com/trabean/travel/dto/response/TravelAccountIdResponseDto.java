@@ -9,8 +9,4 @@ public class TravelAccountIdResponseDto {
 
     private Long foreignTravelAccountId;
 
-    public static TravelAccountIdResponseDto from(Long foreignTravelAccountId) {
-        return new TravelAccountIdResponseDto(foreignTravelAccountId);
-    }
-
 }

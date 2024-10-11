@@ -12,14 +12,4 @@ public final class TravelAccountResponseDto {
     private String exchangeCurrency;
     private double accountBalance;
 
-    public static TravelAccountResponseDto from(Long accountId, String country, String exchangeCurrency,
-                                                double accountBalance) {
-        return new TravelAccountResponseDto(
-                accountId,
-                country,
-                exchangeCurrency,
-                accountBalance
-        );
-    }
-
 }

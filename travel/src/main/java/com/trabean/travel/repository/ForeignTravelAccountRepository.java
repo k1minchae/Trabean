@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ForeignTravelAccountRepository extends JpaRepository<ForeignTravelAccount, Long> {
 
+    ForeignTravelAccount findByAccountId(Long accountId);
+
 }

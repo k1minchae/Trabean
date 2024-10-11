@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: payment
+
+  profiles:
+    include: private
+    active: dev
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    open-in-view: false  # JPA의 Open-in-view 전략 비활성화
+    database: mysql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # MySQL8Dialect로 설정
+    hibernate:
+      ddl-auto: update  # 테이블 자동 업데이트 설정
+    show-sql: true  # SQL 쿼리 로깅 활성화
+server:
+  port: 8084
+
+# Eureka ??
+eureka:
+  instance:
+    prefer-ip-address: true  # ???? ?? ? IP ??? ??
+  client:
+    register-with-eureka: true  # Eureka ??? ?? ??
+    fetch-registry: true  # Eureka ???? ??? ??? ??? ???? ??
+    service-url:
+      defaultZone: http://j11a604.p.ssafy.io:8761/eureka # Eureka ??? ?? URL (??? ?? URL? ???? ?)
+
+# ?? ????? ??
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"  # ?? ?? ????? ??
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
